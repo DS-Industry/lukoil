@@ -1,0 +1,23 @@
+{
+  "name": "lucoil",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/**"
+  ],
+  "scripts": {
+    "start:dev": "concurrently \"yarn workspace lucoil-backend start:dev\" \"yarn workspace lucoil-frontend start dev\"",
+    "start:front:dev": "yarn workspace lucoil-frontend start dev",
+    "start:back:dev": "yarn workspace lucoil-backend start:dev",
+    "pull": "cd ./packages/lucoil-backend ; git pull origin master ; cd ../lucoil-frontend ; git pull origin master ; cd ../..",
+    "pwd" : "echo %cd%",
+    "pull:front": " cd /packages/lucoil-frontend ; git pull origin master ; cd ../..",
+    "pull:back": "cd $PWD/packages/lucoil-backend ; git pull origin master ; cd ../..",
+    "start:prod": "concurrently \"yarn workspace lucoil-backend start:prod\" \"yarn workspace lucoil-frontend start dev\"",
+    "build": "concurrently \"yarn workspace luckoil-backend build\" \"yarn workspace luckoil-frontend build\""
+},
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
