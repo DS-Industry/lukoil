@@ -18,9 +18,16 @@ import { TagInfo } from '../../tag-info';
 interface IPortalService {
 	name: string;
 	cost: string;
+	serviceDuration: string;
+	serviceInfo: Array<string>;
 }
 
-export const PortalService: React.FC<IPortalService> = ({ name, cost }) => {
+export const PortalService: React.FC<IPortalService> = ({
+	name,
+	cost,
+	serviceDuration,
+	serviceInfo,
+}) => {
 	const navigate = useNavigate();
 	const { updateStore } = useOrder();
 	const { updateStore: updateCWStore } = useCarWash();
@@ -72,7 +79,7 @@ export const PortalService: React.FC<IPortalService> = ({ name, cost }) => {
 								/>
 							</AccordionButton>
 							<TagInfo
-								label="5 мин"
+								label={`${serviceDuration} мин`}
 								bgColor="colors.PRIMARY_RED"
 								color="colors.WHITE"
 								fontSize="14px"
@@ -81,94 +88,22 @@ export const PortalService: React.FC<IPortalService> = ({ name, cost }) => {
 						</HStack>
 						<AccordionPanel>
 							<Flex flexDir="row" flexWrap="wrap">
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
-								<Box mr="4%" mb="4%">
-									<TagInfo
-										width="auto"
-										label="Tag 1"
-										bgColor="colors.PRIMARY_RED"
-										color="colors.WHITE"
-										fontSize="12px"
-										height="20px"
-										pY="3px"
-									/>
-								</Box>
+								{serviceInfo &&
+									serviceInfo.map((item) => {
+										return (
+											<Box mr="4%" mb="4%">
+												<TagInfo
+													width="auto"
+													label={item}
+													bgColor="colors.PRIMARY_RED"
+													color="colors.WHITE"
+													fontSize="12px"
+													height="20px"
+													pY="3px"
+												/>
+											</Box>
+										);
+									})}
 							</Flex>
 						</AccordionPanel>
 					</AccordionItem>

@@ -13,7 +13,6 @@ export class CarWashService {
 
   public async getCarWashList() {
     const carWashes = await this.carWashRepository.getCarWashList();
-    console.log(carWashes[0].carwashes[1]);
     return carWashes;
   }
 
