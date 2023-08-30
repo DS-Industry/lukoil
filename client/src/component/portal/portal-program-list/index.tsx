@@ -16,7 +16,7 @@ export const PortalProgramList: React.FC<IPortalProgramList> = ({
 			{programList &&
 				programList.map((program: any, index: number) => {
 					return (
-						<Box mb="10px" key={`qweqwe${index}`}>
+						<Box mb="10px" key={index} h="100%">
 							<PortalService
 								name={program.name}
 								cost={program.cost}

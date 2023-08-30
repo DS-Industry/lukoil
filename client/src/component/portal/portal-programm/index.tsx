@@ -5,6 +5,7 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Box,
+	Flex,
 	HStack,
 	Text,
 	VStack,
@@ -41,57 +42,137 @@ export const PortalService: React.FC<IPortalService> = ({ name, cost }) => {
 						{cost} ₽
 					</Text>
 				</HStack>
-				<HStack w="100%" justifyContent="space-between">
-					<Accordion
-						w="100%"
-						borderTopWidth="0"
-						borderBottomWidth="0"
-						borderBottomColor="none"
-						allowMultiple
-					>
-						<AccordionItem
-							borderTopWidth="0"
-							borderBottomWidth="0"
-							borderBottomColor="none"
-						>
-							<HStack w="100%" justifyContent="space-between">
-								<AccordionButton
-									py="1px"
-									pl="3px"
-									pr="4px"
-									borderRadius="4px"
+				<Accordion mt="10%" w="100%" allowMultiple>
+					<AccordionItem border="0px">
+						<HStack w="100%" justifyContent="space-between" border="0px">
+							<AccordionButton
+								py="1px"
+								px="4px"
+								borderRadius="4px"
+								h="20px"
+								w="35%"
+								bgColor="colors.WHITE"
+								animation="none"
+								_focus={{
+									backgroundColor: 'white',
+									boxShadow: 'none',
+									transition: 'none',
+								}}
+								transition="none"
+							>
+								<Text fontSize="12px" fontWeight="700" mr="8px">
+									Подробнее
+								</Text>
+								<AccordionIcon
+									w="20px"
 									h="20px"
-									w="35%"
-									bgColor="colors.WHITE"
-									_hover={{ backgroundColor: 'white' }}
-									borderBottomColor="none"
-								>
-									<Text fontSize="12px" fontWeight="700" mr="8px">
-										Подробнее
-									</Text>
-									<AccordionIcon
-										borderTopWidth="0"
-										borderBottomWidth="0"
-										w="20px"
-										h="20px"
-										padding="0"
-										bgColor="none"
-										color={'colors.PRIMARY_RED'}
-										borderBottomColor="none"
-									/>
-								</AccordionButton>
-								<TagInfo
-									label="5 мин"
-									bgColor="colors.PRIMARY_RED"
-									color="colors.WHITE"
-									fontSize="14px"
-									pY="3px"
+									padding="0"
+									bgColor="none"
+									color="colors.PRIMARY_RED"
 								/>
-							</HStack>
-							<AccordionPanel borderBottomColor="none"></AccordionPanel>
-						</AccordionItem>
-					</Accordion>
-				</HStack>
+							</AccordionButton>
+							<TagInfo
+								label="5 мин"
+								bgColor="colors.PRIMARY_RED"
+								color="colors.WHITE"
+								fontSize="14px"
+								pY="3px"
+							/>
+						</HStack>
+						<AccordionPanel>
+							<Flex flexDir="row" flexWrap="wrap">
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+								<Box mr="4%" mb="4%">
+									<TagInfo
+										width="auto"
+										label="Tag 1"
+										bgColor="colors.PRIMARY_RED"
+										color="colors.WHITE"
+										fontSize="12px"
+										height="20px"
+										pY="3px"
+									/>
+								</Box>
+							</Flex>
+						</AccordionPanel>
+					</AccordionItem>
+				</Accordion>
 			</VStack>
 		</Box>
 	);

@@ -12,6 +12,7 @@ interface ITagInfo {
 	pY?: string;
 	pX?: string;
 	borderRadius?: string;
+	m?: string;
 }
 
 export const TagInfo: React.FC<ITagInfo> = ({
