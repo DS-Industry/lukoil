@@ -9,8 +9,10 @@ interface ITagInfo {
 	fontSize: string;
 	height?: string;
 	fontWeight?: string;
-	padding?: string;
+	pY?: string;
+	pX?: string;
 	borderRadius?: string;
+	m?: string;
 }
 
 export const TagInfo: React.FC<ITagInfo> = ({
@@ -20,14 +22,15 @@ export const TagInfo: React.FC<ITagInfo> = ({
 	fontSize,
 	height = 'auto',
 	borderRadius = '4px',
-	padding = '10px',
+	pY = '10px',
 	fontWeight = '600',
+	width = '55px',
 }) => {
 	return (
 		<Tag
-			w="auto"
+			minW={width}
 			h={height}
-			p={padding}
+			py={pY}
 			borderRadius={borderRadius}
 			bg={bgColor}
 			whiteSpace="nowrap"

@@ -32,45 +32,44 @@ export const InstructionPage: React.FC = () => {
 	}, []);
 
 	return (
-		<>
+		<Flex
+			w="99vw"
+			bgColor="colors.WHITE"
+			justifyContent="center"
+			alignItems="center"
+			flexDirection="column"
+			pl="16px"
+			pr="16px"
+		>
+			<Header bgcolor="colors.WHITE" label="" />
+
+			<Logo />
+
+			<MainText />
+
 			<Flex
-				w="100vw"
-				bgColor="colors.WHITE"
-				justifyContent="center"
-				alignItems="center"
 				flexDirection="column"
+				w="100%"
+				mt="50px"
+				pt="40px"
+				h="90vh"
+				justifyContent="space-between"
+				borderTopRadius="25px"
+				bgColor="rgba(235, 235, 236, 0.40);"
+				alignItems="baseline"
 			>
-				<Header bgcolor="colors.WHITE" label="" />
-
-				<Logo />
-
-				<MainText />
-
-				<Flex
-					flexDirection="column"
-					ml="16px"
-					mr="16px"
-					mt="50px"
-					pt="40px"
-					h="90vh"
-					justifyContent="space-between"
-					borderTopRadius="25px"
-					bgColor="rgba(235, 235, 236, 0.40);"
-					alignItems="baseline"
-				>
-					{instructionList.map((info: string, index: number) => {
-						return <InstructionList key={index} info={info} index={index} />;
-					})}
-					<Box pl="13px" pr="13px" w="100%">
-						<OperButton
-							title="Искать автомойку"
-							onClick={handleClick}
-							disabled={false}
-							isOper={false}
-						/>
-					</Box>
-				</Flex>
+				{instructionList.map((info: string, index: number) => {
+					return <InstructionList key={index} info={info} index={index} />;
+				})}
+				<Box pl="13px" pr="13px" w="100%">
+					<OperButton
+						title="Искать автомойку"
+						onClick={handleClick}
+						disabled={false}
+						isOper={false}
+					/>
+				</Box>
 			</Flex>
-		</>
+		</Flex>
 	);
 };

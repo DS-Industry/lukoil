@@ -28,7 +28,6 @@ export class CarWashRepository {
           { headers: headersReq },
         ),
       );
-
       return response.data.map((loc) => {
         return Location.toLocation(loc);
       });

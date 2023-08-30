@@ -12,7 +12,8 @@ export class CarWashService {
   constructor(private readonly carWashRepository: CarWashRepository) {}
 
   public async getCarWashList() {
-    return await this.carWashRepository.getCarWashList();
+    const carWashes = await this.carWashRepository.getCarWashList();
+    return carWashes;
   }
 
   public async ping(carWashId: string, bayNumber: number) {

@@ -76,6 +76,8 @@ export class Price {
   description: string;
   cost: number;
   costType: number;
+  serviceInfo: Array<string>;
+  serviceDuration: number;
 
   public static toPrice(data: any): Price {
     return {
@@ -84,6 +86,8 @@ export class Price {
       description: data.description,
       cost: data.cost,
       costType: data.costType,
+      serviceDuration: data.serviceDuration,
+      serviceInfo: data.serviceInfo,
     };
   }
 }
