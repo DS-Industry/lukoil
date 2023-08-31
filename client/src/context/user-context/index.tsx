@@ -39,7 +39,10 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const getStore = () => {
-		const store: IUserPartial | any = secureLocalStorage.getItem('user-store');
+		let store: IUserPartial | any = secureLocalStorage.getItem('user-store');
+		if (store === null) {
+			setUser({ error: 400 });
+		}
 		setUser(store);
 	};
 

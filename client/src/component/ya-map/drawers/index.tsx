@@ -52,6 +52,7 @@ export const CustomYMap = () => {
 				topBR="0"
 				pl="0"
 				pr="0"
+				isList={true}
 			>
 				<ListPage
 					key={1001}

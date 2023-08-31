@@ -13,6 +13,36 @@ code {
 		monospace;
 }
 
-.ya_btn {
-	border-radius: 10rem;
+.baloon-content {
+	background-color: #D2233C;
+	color: white;
+	font-size: 12px;
+	font-weight: 500;
+	font-family: 'Inter';
+	height: 30px;
+	padding: 5px 2px;
+	border-radius: 8px;
+	transform: rotate(180deg);
 }
+
+.ymaps-2-1-79-balloon {
+	box-shadow: none !important;
+	transform: rotate(180deg) !important;
+  }
+
+.ymaps-2-1-79-balloon__content {
+	padding: 0 !important;
+	background: transparent !important;
+	margin: 0 !important;
+	border: none !important;
+	transform: rotate(360deg) !important;
+  }
+  
+  .ymaps-2-1-79-balloon__layout {
+	background: transparent !important;
+	border: none !important;
+  }
+
+  .ymaps-2-1-79-balloon__tail::after {
+	background-color: #D2233C !important;
+  }

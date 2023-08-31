@@ -24,7 +24,7 @@ export const TagInfo: React.FC<ITagInfo> = ({
 	borderRadius = '4px',
 	pY = '10px',
 	fontWeight = '600',
-	width = '55px',
+	width = 'auto',
 }) => {
 	return (
 		<Tag

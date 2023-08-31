@@ -14,7 +14,7 @@ export const ListInput: React.FC<IListInput> = ({ setTerm }) => {
 	};
 
 	return (
-		<InputGroup>
+		<InputGroup mx='16px'>
 			<InputLeftElement color="#828286">
 				<FaMagnifyingGlass />
 			</InputLeftElement>

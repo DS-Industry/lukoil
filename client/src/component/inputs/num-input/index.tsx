@@ -41,7 +41,13 @@ export const NumInput: React.FC<INumInput> = ({
 	};
 
 	return (
-		<Flex justifyContent="center" alignItems="center" flexDir="column" w="100%">
+		<Flex
+			justifyContent="center"
+			alignItems="center"
+			flexDir="column"
+			w="100%"
+			mt="20px"
+		>
 			<Text
 				fontSize="20px"
 				fontWeight="700"

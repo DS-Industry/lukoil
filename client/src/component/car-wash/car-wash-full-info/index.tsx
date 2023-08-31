@@ -17,7 +17,7 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 	return (
 		<Flex flexDir="column" pt="28px" h="90vh">
 			<CarWashMap
-				isDisabled={false}
+				isDisabled={true}
 				title={carWash.name}
 				id={carWash.id}
 				openTime="24 часа"

@@ -1,6 +1,6 @@
 import { CarWashMap } from '../../component/car-wash/car-wash-map-item';
 import { useOrder } from '../../context/order-context';
-import { Box, Flex, HStack, Text, useToast } from '@chakra-ui/react';
+import { Box, Flex, HStack, Spinner, Text, useToast } from '@chakra-ui/react';
 import { OperButton } from '../../component/buttons/oper_button';
 import { useCarWash } from '../../context/carwash-context';
 import { TagInfo } from '../../component/tag-info';
@@ -44,13 +44,13 @@ export const OrderPage: React.FC = () => {
 		if (!carWashStore.carWash) {
 			getCWStore();
 		}
-		if (!userStore.phNumber) {
+		if (!userStore || !userStore.partnerCard) {
 			getUserStore();
 		}
 	}, [orderStore, carWashStore, userStore]);
 
 	useEffect(() => {
-		if (userStore.phNumber && !userStore.partnerCard) {
+		if (!userStore || userStore.error === 400) {
 			toast({
 				title: 'Кажется что-то пошло не так...',
 				description: 'Приходите позже.',
@@ -61,7 +61,7 @@ export const OrderPage: React.FC = () => {
 			});
 			navigate('/home');
 		}
-	}, [userStore.phNumber]);
+	}, [userStore]);
 
 	useEffect(() => {
 		if (carWashStore.pingStatus === 200) {
@@ -124,7 +124,10 @@ export const OrderPage: React.FC = () => {
 			p="28px"
 			pb="0"
 		>
-			{userStore.partnerCard !== null && carWashStore.carWash && (
+			{userStore &&
+			userStore.phNumber &&
+			userStore.partnerCard &&
+			carWashStore.carWash ? (
 				<>
 					<Flex flexDirection="column">
 						<CarWashMap
@@ -213,6 +216,8 @@ export const OrderPage: React.FC = () => {
 						/>
 					</Flex>
 				</>
+			) : (
+				<Spinner />
 			)}
 		</Flex>
 	);
