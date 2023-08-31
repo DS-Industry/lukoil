@@ -89,9 +89,9 @@ export const PortalService: React.FC<IPortalService> = ({
 						<AccordionPanel>
 							<Flex flexDir="row" flexWrap="wrap">
 								{serviceInfo &&
-									serviceInfo.map((item) => {
+									serviceInfo.map((item: any, index: number) => {
 										return (
-											<Box mr="4%" mb="4%">
+											<Box mr="4%" mb="4%" key={index}>
 												<TagInfo
 													width="auto"
 													label={item}

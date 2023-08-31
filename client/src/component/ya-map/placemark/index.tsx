@@ -45,6 +45,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 	const [placeMarkParams, setPlaceMarkParams] = useState({
 		icon,
 		size,
+		offset: [-size[0] / 2, -size[1]],
 	});
 
 	useEffect(() => {
@@ -70,11 +71,13 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 					setPlaceMarkParams({
 						icon: activeIcon,
 						size: activeSize,
+						offset: [-activeSize[0] / 2, -activeSize[1]],
 					});
 				} else {
 					setPlaceMarkParams({
 						icon,
 						size,
+						offset: [-size[0] / 2, -size[1]],
 					});
 				}
 			}
@@ -90,6 +93,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 				iconLayout: 'default#image',
 				iconImageHref: placeMarkParams.icon,
 				iconImageSize: placeMarkParams.size,
+				iconImageOffset: placeMarkParams.offset,
 			}}
 			onClick={() => {
 				if (carWashes.length < 2) {
