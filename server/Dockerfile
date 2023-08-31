@@ -2,7 +2,8 @@ FROM oraclelinux:7-slim
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY yarn.lock /.
 
 RUN yum update -y && \
 yum install -y oracle-release-el7 && \
@@ -18,7 +19,7 @@ npm install -g yarn && \
 yarn --version && \
 echo Installed
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
 

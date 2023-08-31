@@ -3,7 +3,6 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { EnvironmentModule } from 'src/environment/environment.module';
 import { JwtTokenModule } from 'src/frameworks/jwt/jwt-token.module';
-import { BcryptModule } from 'src/frameworks/bcrypt/bcrypt.module';
 import { UserModule } from 'src/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Otp } from './entity/otp.entity';
@@ -16,7 +15,6 @@ import { SmsProviderService } from './sms-provider.service';
   imports: [
     EnvironmentModule,
     JwtTokenModule,
-    BcryptModule,
     UserModule,
     TypeOrmModule.forFeature([Otp]),
     ConfigModule,

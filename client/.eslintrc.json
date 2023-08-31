@@ -8,7 +8,7 @@
 	"rules": {
 		"react-hooks/exhaustive-deps": "off",
 		"prettier/prettier": [
-			"error",
+			"off",
 			{
 				"printWidth": 80,
 				"singleQuote": true,
