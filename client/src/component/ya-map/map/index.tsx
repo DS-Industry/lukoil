@@ -46,10 +46,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 
 		useEffect(() => {
 			async function getCarWashListWithCoords() {
-				console.log('here');
-				console.log(store.carWashes);
 				await getCarWashList();
-
 				navigator.geolocation.getCurrentPosition((position) => {
 					const { latitude, longitude } = position.coords;
 					console.log(latitude, longitude);
@@ -59,9 +56,15 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 			getCarWashListWithCoords();
 		}, []);
 
+		useEffect(() => {
+			if (store && store.carWashes) {
+				console.log(store.carWashes);
+			}
+		}, [store]);
+
 		return (
 			<>
-				{store.carWashes && userPosition.length > 0 ? (
+				{store && store.carWashes && userPosition.length > 0 ? (
 					<Flex
 						h="100vh"
 						w="100vw"
@@ -93,34 +96,32 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 									'multiRouter.MultiRoute',
 								]}
 							>
-								{store &&
-									store.carWashes.map((carWash: any, index: number) => {
-										if (carWash.lat && carWash.lon) {
-											return (
-												<CustomPlacemark
-													key={index}
-													carWash={carWash}
-													index={index}
-													coords={[carWash.lat, carWash.lon]}
-													carWashes={carWash.carwashes}
-													setCarWash={setCarWash}
-													icon={GeoSVG}
-													activeIcon={ActiveGeoSVG}
-													userPosition={userPosition}
-													getCoords={setCarWashCoords}
-													setPlaceMarkStyle={setDrawerSwitch}
-													getDistance={setDistance}
-													size={[41, 41]}
-													activeSize={[61, 61]}
-													getInfo={setCarWashMainInfo}
-													setCarWashId={setCarWashIdList}
-													placemarkId={carWashIdList >= 0 ? carWashIdList : -1}
-													setDrawerSwitch={setDrawerSwitch}
-													placeMarkSwitch={drawerSwitch}
-												/>
-											);
-										} else return null;
-									})}
+								{store.carWashes.map((carWash: any, index: number) => {
+									if (carWash.lat && carWash.lon) {
+										return (
+											<CustomPlacemark
+												key={index}
+												carWash={carWash}
+												index={index}
+												coords={[carWash.lat, carWash.lon]}
+												carWashes={carWash.carwashes}
+												setCarWash={setCarWash}
+												icon={GeoSVG}
+												activeIcon={ActiveGeoSVG}
+												userPosition={userPosition}
+												getCoords={setCarWashCoords}
+												getDistance={setDistance}
+												size={[41, 41]}
+												activeSize={[61, 61]}
+												getInfo={setCarWashMainInfo}
+												setCarWashId={setCarWashIdList}
+												placemarkId={carWashIdList >= 0 ? carWashIdList : -1}
+												setDrawerSwitch={setDrawerSwitch}
+												placeMarkSwitch={drawerSwitch}
+											/>
+										);
+									} else return null;
+								})}
 								<Placemark
 									key={98928397239231}
 									options={{ preset: 'islands#redCircleDotIcon' }}
@@ -139,7 +140,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 						</YMaps>
 						<Navbar openList={setDrawerSwitch} />
 					</Flex>
-				) : store.error ? (
+				) : store && store.error ? (
 					<Flex
 						h="100vh"
 						alignItems="center"

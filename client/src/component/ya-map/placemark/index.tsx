@@ -18,7 +18,6 @@ interface ICustomPlacemark {
 	setDrawerSwitch: any;
 	placeMarkSwitch: string;
 	getDistance: any;
-	setPlaceMarkStyle: any;
 	setCarWash: any;
 	setCarWashId: any;
 }
@@ -38,7 +37,6 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 	userPosition,
 	getDistance,
 	getCoords,
-	setPlaceMarkStyle,
 	setCarWash,
 	setCarWashId,
 }) => {
@@ -133,7 +131,6 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 				});
 
 				setDrawerSwitch('main');
-				setPlaceMarkStyle('main');
 			}}
 		/>
 	);

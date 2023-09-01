@@ -35,22 +35,42 @@ export const OrderPage: React.FC = () => {
 	};
 
 	useEffect(() => {
-		if (orderStore && carWashStore && userStore) {
-			console.log(orderStore, carWashStore, userStore);
-		}
-		if (!orderStore.sum) {
+		if (userStore && userStore.isLoading) {
 			getOrderStore();
-		}
-		if (!carWashStore.carWash) {
 			getCWStore();
-		}
-		if (!userStore || !userStore.partnerCard) {
 			getUserStore();
+		} else {
+			console.log('here.......');
+			console.log(orderStore, carWashStore, userStore);
+			if (
+				!orderStore ||
+				!userStore ||
+				(userStore && !userStore.partnerCard && !userStore.phNumber)
+			) {
+				toast({
+					title: 'Кажется что-то пошло не так...',
+					description: 'Приходите позже.',
+					status: 'error',
+					duration: 9000,
+					isClosable: true,
+					position: 'top',
+				});
+				navigate('/home');
+			}
 		}
-	}, [orderStore, carWashStore, userStore]);
+	}, [userStore]);
 
 	useEffect(() => {
-		if (!userStore || userStore.error === 400) {
+		console.log(orderStore, carWashStore, userStore);
+	}, [orderStore, carWashStore, userStore]);
+
+	/* 	useEffect(() => {
+		console.log('here');
+		console.log('this is store in error 999');
+		console.log(orderStore);
+		console.log('----------------------------');
+		if (orderStore && !orderStore.bayNumber) {
+			console.log('here 222');
 			toast({
 				title: 'Кажется что-то пошло не так...',
 				description: 'Приходите позже.',
@@ -61,36 +81,37 @@ export const OrderPage: React.FC = () => {
 			});
 			navigate('/home');
 		}
-	}, [userStore]);
+	}, [orderStore]); */
 
 	useEffect(() => {
-		if (carWashStore.pingStatus === 200) {
-			updateCWStore({
-				pingStatus: null,
-			});
-			sendPayment(String(orderStore.sum));
-			console.log('ping status free');
+		if (carWashStore) {
+			if (carWashStore.pingStatus === 200) {
+				updateCWStore({
+					pingStatus: null,
+				});
+				sendPayment(String(orderStore.sum));
+				console.log('ping status free');
+			}
+			if (carWashStore.pingStatus === 400) {
+				console.log('ping status busy');
+				updateCWStore({
+					pingStatus: null,
+				});
+				toast({
+					title: 'Кажется с постом что-то не так',
+					description: 'Возможно он занят',
+					status: 'error',
+					duration: 9000,
+					isClosable: true,
+					position: 'top',
+				});
+				navigate('/home');
+			}
 		}
-
-		if (carWashStore.pingStatus === 400) {
-			console.log('ping status busy');
-			updateCWStore({
-				pingStatus: null,
-			});
-			toast({
-				title: 'Кажется с постом что-то не так',
-				description: 'Возможно он занят',
-				status: 'error',
-				duration: 9000,
-				isClosable: true,
-				position: 'top',
-			});
-			navigate('/home');
-		}
-	}, [carWashStore.pingStatus]);
+	}, [carWashStore]);
 
 	useEffect(() => {
-		if (!orderStore.isLoading) {
+		if (orderStore && !orderStore.isLoading) {
 			if (orderStore.paymentTocken) {
 				navigate('/pay');
 			}
@@ -112,7 +133,7 @@ export const OrderPage: React.FC = () => {
 				navigate('/home');
 			}
 		}
-	}, [orderStore.isLoading]);
+	}, [orderStore]);
 
 	return (
 		<Flex
@@ -217,7 +238,9 @@ export const OrderPage: React.FC = () => {
 					</Flex>
 				</>
 			) : (
-				<Spinner />
+				<Box w="100vw" h="100vh">
+					<Spinner />
+				</Box>
 			)}
 		</Flex>
 	);

@@ -22,7 +22,7 @@ interface ICarWashContext {
 const CarWashContext = React.createContext<ICarWashContext | null>(null);
 
 const CarWashProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [store, setStore] = React.useState({
+	const [store, setStore] = React.useState<ICarWashStorePartial>({
 		carWash: null,
 		carWashes: [],
 		pingStatus: null,

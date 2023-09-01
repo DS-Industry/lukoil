@@ -28,7 +28,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		partnerCard: null,
 		phNumber: null,
 		token: null,
-		isLoading: false,
+		isLoading: true,
 		error: null,
 	});
 
@@ -40,9 +40,8 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	const getStore = () => {
 		let store: IUserPartial | any = secureLocalStorage.getItem('user-store');
-		if (store === null) {
-			setUser({ error: 400 });
-		}
+		console.log('herer 3232323');
+		console.log('this is store', store);
 		setUser(store);
 	};
 
@@ -100,7 +99,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				phone,
 				otp,
 			});
-			console.log(response.data);
 			updateStore({
 				isLoading: false,
 				token: response.data.accessToken,
