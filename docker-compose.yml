@@ -16,7 +16,7 @@ services:
   client:
     build: ./client
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - REACT_APP_BASE_URL=http://localhost:5000
     networks:
