@@ -9,7 +9,7 @@ export class PaymentService {
   private checkout;
   constructor(env: EnvironmentService) {
     this.checkout = new YooCheckout({
-      shopId: '500568',
+      shopId: '168905',
       secretKey: env.getPaymentApiKey(),
     });
   }
