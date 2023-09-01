@@ -1,6 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { CarWashMap } from '../car-wash-map-item';
-import { TagInfo } from '../../tag-info';
 import { TagButton } from '../../buttons/tag-button';
 
 interface ICarWashMainInfo {
@@ -19,7 +18,7 @@ export const CarWashMainInfo: React.FC<ICarWashMainInfo> = ({
 	carWashMainInfo,
 }) => {
 	return (
-		<Flex flexDirection="column">
+		<Flex flexDirection="column" mt="20px">
 			<Box w="100%" mb="20px">
 				<CarWashMap
 					isDisabled={false}
@@ -32,17 +31,6 @@ export const CarWashMainInfo: React.FC<ICarWashMainInfo> = ({
 					getCarWash={setCarWash}
 					setCarWashDrawer={setDrawerSwitch}
 				/>
-				{distance && distance > 500 && (
-					<Flex w="100%" justifyContent="center" mt="20px">
-						<TagInfo
-							label="АМС слишком далеко от вас!"
-							bgColor="colors.SECONDARY_RED"
-							color="colors.PRIMARY_RED"
-							fontSize="14px"
-							height="28px"
-						/>
-					</Flex>
-				)}
 			</Box>
 
 			{carWashMainInfo && carWashMainInfo.carWashes.length < 2 && (

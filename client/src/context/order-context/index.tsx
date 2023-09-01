@@ -33,7 +33,7 @@ const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 		paymentId: null,
 		paymentTocken: null,
 		isPaid: false,
-		isLoading: false,
+		isLoading: true,
 		error: null,
 	});
 	const { user } = useUser();

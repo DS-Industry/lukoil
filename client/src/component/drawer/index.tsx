@@ -2,8 +2,8 @@ import {
 	Drawer,
 	DrawerOverlay,
 	DrawerContent,
-	DrawerCloseButton,
 	DrawerBody,
+	DrawerCloseButton,
 	DrawerHeader,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
@@ -15,7 +15,7 @@ interface ICustomDrawer {
 	pr?: string;
 	topBR?: string;
 	size?: string;
-	isConf?: boolean;
+	isList?: boolean;
 	isCloseOnOverlayClick?: boolean;
 	onClose: () => void;
 }
@@ -28,7 +28,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 	pr,
 	topBR,
 	size,
-	isConf,
+	isList = false,
 	isCloseOnOverlayClick = true,
 }) => {
 	return (
@@ -41,8 +41,12 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 		>
 			<DrawerOverlay />
 			<DrawerContent borderTopRadius={topBR ? topBR : '16px'}>
-				{isConf ? '' : <DrawerCloseButton />}
-				<DrawerHeader></DrawerHeader>
+				{isList && (
+					<>
+						<DrawerHeader mb="10px"></DrawerHeader>
+						<DrawerCloseButton />
+					</>
+				)}
 				<DrawerBody pl={pl ? pl : '16px'} pr={pr ? pr : '16px'}>
 					{children}
 				</DrawerBody>

@@ -18,7 +18,6 @@ interface ICustomPlacemark {
 	setDrawerSwitch: any;
 	placeMarkSwitch: string;
 	getDistance: any;
-	setPlaceMarkStyle: any;
 	setCarWash: any;
 	setCarWashId: any;
 }
@@ -38,7 +37,6 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 	userPosition,
 	getDistance,
 	getCoords,
-	setPlaceMarkStyle,
 	setCarWash,
 	setCarWashId,
 }) => {
@@ -47,21 +45,22 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 		size,
 		offset: [-size[0] / 2, -size[1]],
 	});
+	const [distance, setDistance] = useState<number>(0);
+	const balloonData =
+		'<div class="baloon-content .ymaps-2-1-79-balloon__tail .ymaps-2-1-79-balloon__layout" ><p> АМС далеко от вас </p></div>';
 
 	useEffect(() => {
-		if (placemarkId === index) {
-			const distance = calculateDistance(
-				userPosition[0],
-				userPosition[1],
-				coords[0],
-				coords[1]
-			);
-			getDistance(distance);
-		}
-	});
+		const calcDistance = calculateDistance(
+			userPosition[0],
+			userPosition[1],
+			coords[0],
+			coords[1]
+		);
+		setDistance(calcDistance);
+	}, []);
 
 	useEffect(() => {
-		const updatePlaceMark = async () => {
+		const updatePlaceMark = () => {
 			if (placemarkId === index) {
 				if (
 					placeMarkSwitch &&
@@ -89,24 +88,49 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 		<Placemark
 			key={index}
 			geometry={coords}
+			instanceRef={(ref: any) => {
+				if (distance > 500 && placemarkId === index) {
+					if (placeMarkSwitch === 'bay') {
+						ref && ref.balloon.open();
+					} else {
+						ref && ref.balloon.close();
+					}
+				}
+			}}
 			options={{
 				iconLayout: 'default#image',
 				iconImageHref: placeMarkParams.icon,
 				iconImageSize: placeMarkParams.size,
 				iconImageOffset: placeMarkParams.offset,
+				hideIconOnBalloonOpen: false,
+				balloonMinHeight: 10,
+				balloonCloseButton: false,
+				balloonOffset: [-3, 53],
+				openBalloonOnClick: false,
+				openEmptyBalloon: true,
 			}}
+			defaultProperties={{
+				balloonContentBody: balloonData,
+				balloonPanelMaxMapArea: 0,
+			}}
+			modules={[
+				//чтобы видеть хинты и балуны подключаем данные модули
+				'objectManager.addon.objectsBalloon',
+				'objectManager.addon.objectsHint',
+			]}
 			onClick={() => {
 				if (carWashes.length < 2) {
 					setCarWash(carWashes[0]);
 				}
+				getDistance(distance);
 				getCoords(coords);
 				setCarWashId(index);
 				getInfo({
 					id: index,
 					carWashes,
 				});
+
 				setDrawerSwitch('main');
-				setPlaceMarkStyle('main');
 			}}
 		/>
 	);

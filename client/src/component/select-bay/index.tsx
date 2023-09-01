@@ -54,7 +54,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 					);
 				})}
 			</Flex>
-			<Box mt="25px" mb="135px" w="100%" display="flex" pl="42.5vw">
+			<Box mt="25px" mb="20px" w="100%" display="flex" pl="42.5vw">
 				<Image src={CenterDot} />
 			</Box>
 			<OperButton

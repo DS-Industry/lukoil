@@ -27,7 +27,6 @@ export const OperButton: React.FC<IOperButton> = ({
 	const { store: carWashStore } = useCarWash();
 
 	const handleClick = () => {
-		console.log('this is drawer type: ', switchCarWashType);
 		if (switchCarWashType === 'tel') {
 			updateUserStore({
 				phNumber: value,

@@ -10,5 +10,6 @@
 	"editor.tabSize": 2,
 	"prettier.bracketSpacing": true,
 	"prettier.semi": true,
+	"prettier.endOfLine": "crlf",
 	"editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"]
 }
