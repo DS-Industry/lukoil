@@ -15,6 +15,8 @@ async function bootstrap() {
     credentials: true, // if you need to send cookies or credentials
   });
 
+  app.set('trust proxy', 1);
+
   await app.listen(process.env.PORT, () => {
     logger.log(`LuckOil back-end listening on port ${process.env.PORT}`);
   });
