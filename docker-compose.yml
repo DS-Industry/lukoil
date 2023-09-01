@@ -10,7 +10,7 @@ services:
       - "80:80"
     depends_on:
       - client
-      - server
+      - api
     networks:
       - "shared-network"
   client:
@@ -22,7 +22,7 @@ services:
     networks:
       - "shared-network"
     depends_on:
-      - server
+      - api
     stdin_open: true
     tty: true
   api:
