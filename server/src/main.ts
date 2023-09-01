@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionFilter());
 
   app.enableCors({
-    origin: ['https://app.lukoil.ds-mobile.ru', 'http://localhost:3000'],
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // if you need to send cookies or credentials
   });
