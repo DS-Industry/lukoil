@@ -8,6 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const logger = new Logger('app');
   app.useGlobalFilters(new AllExceptionFilter());
+  app.setGlobalPrefix('api');
 
   app.enableCors({
     origin: ['https://app.lukoil.ds-mobile.ru', 'http://localhost:3000', 'http://app.lukoil.ds-mobile.ru'],
