@@ -1,9 +1,20 @@
 version: "3"
 
 services:
+  nginx:
+    restart: always
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - server
+    networks:
+      - "shared-network"
   client:
     build: ./client
-    container_name: lukoil_client
     ports:
       - "3000:3000"
     environment:
@@ -16,7 +27,6 @@ services:
     tty: true
   server:
     build: ./server
-    container_name: lukoil_backend
     restart: unless-stopped
     env_file: ./server/.env.production
     ports:
