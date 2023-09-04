@@ -59,7 +59,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 			<>
 				{store && store.carWashes && userPosition.length > 0 ? (
 					<Flex
-						h="95%"
+						h="85%"
 						w="100vw"
 						justifyContent="space-evenly"
 						alignItems="center"

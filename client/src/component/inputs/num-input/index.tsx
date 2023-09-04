@@ -73,7 +73,7 @@ export const NumInput: React.FC<INumInput> = ({
 				variant="unstyled"
 				fontWeight="700"
 				bg="colors.WHITE"
-				h="60px"
+				minH="70px"
 				fontSize="60px"
 				type="number"
 			/>

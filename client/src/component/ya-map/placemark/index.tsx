@@ -88,7 +88,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 		<Placemark
 			key={index}
 			geometry={coords}
-			/* instanceRef={(ref: any) => {
+			instanceRef={(ref: any) => {
 				if (distance > 500 && placemarkId === index) {
 					if (placeMarkSwitch === 'bay') {
 						ref && ref.balloon.open();
@@ -96,7 +96,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 						ref && ref.balloon.close();
 					}
 				}
-			}} */
+			}}
 			options={{
 				iconLayout: 'default#image',
 				iconImageHref: placeMarkParams.icon,
@@ -113,11 +113,10 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 				balloonContentBody: balloonData,
 				balloonPanelMaxMapArea: 0,
 			}}
-/* 			modules={[
+			modules={[
 				//чтобы видеть хинты и балуны подключаем данные модули
 				'objectManager.addon.objectsBalloon',
-				'objectManager.addon.objectsHint',
-			]} */
+			]} 
 			onClick={() => {
 				if (carWashes.length < 2) {
 					setCarWash(carWashes[0]);

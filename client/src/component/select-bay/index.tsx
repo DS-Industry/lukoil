@@ -20,7 +20,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 			<Flex
 				pl="37.5vw"
 				pr="35vw"
-				mt="60px"
+				mt="20px"
 				flexShrink="none"
 				flexGrow="none"
 				overflowY="scroll"
