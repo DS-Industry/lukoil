@@ -13,7 +13,7 @@
     "start:back:dev": "yarn workspace server start:dev",
     "pwd" : "echo %cd%",
     "start:prod": "concurrently \"yarn workspace server start:prod\" \"yarn workspace client start dev\"",
-    "build": "concurrently \"yarn workspace luckoil-backend build\" \"yarn workspace luckoil-frontend build\""
+    "build": "concurrently \"yarn workspace server build\" \"yarn workspace client build\""
 },
   "devDependencies": {
     "concurrently": "^8.2.0"
