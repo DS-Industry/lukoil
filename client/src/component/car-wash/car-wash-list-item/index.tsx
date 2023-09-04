@@ -27,7 +27,6 @@ export const CarWash: React.FC<ICarWash> = ({
 }) => {
 	const handleClick = () => {
 		openFullInfo('full-info');
-		console.log('this is info', { ...carWash, index });
 		setCarWashCoords(coords);
 		setCarWashIdList(index);
 		setCarWash(carWash);

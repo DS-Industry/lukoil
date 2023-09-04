@@ -30,7 +30,7 @@ export class AuthController {
     return await this.authService.sendOtp(phone);
   }
   @UseGuards(JwtGuard)
-  @Get('test-auth')
+  @Get('/me')
   async testAuth(@Req() req: any) {
     const { user } = req;
 

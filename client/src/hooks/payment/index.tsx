@@ -31,14 +31,12 @@ export default function useYooKassaWidget({
 				// },
 				// @ts-ignore
 				error_callback: function (error) {
-					console.log(error);
 					onError(error);
 				},
 			});
 
 			checkout.on('success', () => {
 				//Код, который нужно выполнить после успешной оплаты.
-				console.log('Start Equipment');
 				onSuccess();
 				//Удаление инициализированного виджета
 				checkout.destroy();

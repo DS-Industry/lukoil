@@ -19,7 +19,7 @@ export const Header: React.FC<IHeader> = ({
 }) => {
 	return (
 		<Flex
-			h="7vh"
+			h="50px"
 			w="100%"
 			bgColor={bgcolor}
 			justifyContent={flexPos}

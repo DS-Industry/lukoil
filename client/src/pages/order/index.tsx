@@ -4,13 +4,14 @@ import { Box, Flex, HStack, Spinner, Text, useToast } from '@chakra-ui/react';
 import { OperButton } from '../../component/buttons/oper_button';
 import { useCarWash } from '../../context/carwash-context';
 import { TagInfo } from '../../component/tag-info';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/user-context';
 
 export const OrderPage: React.FC = () => {
 	const toast = useToast();
 	const navigate = useNavigate();
+	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const {
 		store: orderStore,
@@ -31,6 +32,7 @@ export const OrderPage: React.FC = () => {
 	const handleClick = () => {
 		if (orderStore.carWashId) {
 			pingCarWash(Number(orderStore.carWashId), Number(orderStore.bayNumber));
+			setIsClicked(true);
 		}
 	};
 
@@ -39,10 +41,7 @@ export const OrderPage: React.FC = () => {
 			getOrderStore();
 			getCWStore();
 			getUserStore();
-		} else {
-			console.log('here.......');
-			console.log(orderStore, carWashStore, userStore);
-			if (
+		} else if (
 				!orderStore ||
 				!userStore ||
 				(userStore && !userStore.partnerCard && !userStore.phNumber)
@@ -57,31 +56,7 @@ export const OrderPage: React.FC = () => {
 				});
 				navigate('/home');
 			}
-		}
 	}, [userStore]);
-
-	useEffect(() => {
-		console.log(orderStore, carWashStore, userStore);
-	}, [orderStore, carWashStore, userStore]);
-
-	/* 	useEffect(() => {
-		console.log('here');
-		console.log('this is store in error 999');
-		console.log(orderStore);
-		console.log('----------------------------');
-		if (orderStore && !orderStore.bayNumber) {
-			console.log('here 222');
-			toast({
-				title: 'Кажется что-то пошло не так...',
-				description: 'Приходите позже.',
-				status: 'error',
-				duration: 9000,
-				isClosable: true,
-				position: 'top',
-			});
-			navigate('/home');
-		}
-	}, [orderStore]); */
 
 	useEffect(() => {
 		if (carWashStore) {
@@ -90,10 +65,8 @@ export const OrderPage: React.FC = () => {
 					pingStatus: null,
 				});
 				sendPayment(String(orderStore.sum));
-				console.log('ping status free');
 			}
 			if (carWashStore.pingStatus === 400) {
-				console.log('ping status busy');
 				updateCWStore({
 					pingStatus: null,
 				});
@@ -140,7 +113,7 @@ export const OrderPage: React.FC = () => {
 			boxSizing="border-box"
 			flexDirection="column"
 			justifyContent="space-between"
-			h="100vh"
+			h="95vh"
 			w="100vw"
 			p="28px"
 			pb="0"
@@ -230,6 +203,7 @@ export const OrderPage: React.FC = () => {
 							{orderStore.sum} ₽
 						</Text>
 						<OperButton
+							isLoading={isClicked}
 							title="Оплатить"
 							onClick={handleClick}
 							disabled={false}

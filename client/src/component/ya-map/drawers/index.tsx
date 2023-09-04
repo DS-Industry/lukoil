@@ -27,7 +27,6 @@ export const CustomYMap = () => {
 	const navigateToOrder = () => {
 		navigate('/order');
 	};
-
 	return (
 		<>
 			<YandexMaps

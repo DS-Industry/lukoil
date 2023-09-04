@@ -3,7 +3,7 @@ import { Header } from '../../component/header';
 import { instructionList } from '../../utill/variabels';
 import { OperButton } from '../../component/buttons/oper_button';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Logo } from '../../component/logo';
 import { InstructionList } from '../../component/hard-data/instructions';
 import { MainText } from '../../component/hard-data/main-text';
@@ -12,19 +12,37 @@ import { useUser } from '../../context/user-context';
 export const InstructionPage: React.FC = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [ isClicked, setIsClicked ] = useState<boolean>(false);
 
-	const { updateStore } = useUser();
+	const { updateStore, getMe, user, getStore } = useUser();
 
 	const handleClick = () => {
-		navigate('/login');
+		getMe();
+		setIsClicked(true);
 	};
+
+	useEffect(()=> {
+	if (isClicked) {
+		if (!user) {
+			navigate('/login');
+		} else if (user && !user.isAuth) {
+			navigate('/login');
+		} else if (user && user.isAuth) {
+			navigate('/home');
+		}
+		}
+	}, [user])
+
+	useEffect(()=> {
+		getStore();
+	}, [])
+
+
 
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
 		const partnerCard: number = Number(queryParams.get('partnerCard'));
-
 		if (partnerCard) {
-			console.log(partnerCard);
 			updateStore({
 				partnerCard,
 			});
@@ -63,6 +81,7 @@ export const InstructionPage: React.FC = () => {
 				})}
 				<Box pl="13px" pr="13px" w="100%">
 					<OperButton
+						isLoading={isClicked}
 						title="Искать автомойку"
 						onClick={handleClick}
 						disabled={false}

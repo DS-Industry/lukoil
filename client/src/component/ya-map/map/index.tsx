@@ -49,24 +49,17 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 				await getCarWashList();
 				navigator.geolocation.getCurrentPosition((position) => {
 					const { latitude, longitude } = position.coords;
-					console.log(latitude, longitude);
 					setUserPosition([latitude, longitude]);
 				});
 			}
 			getCarWashListWithCoords();
 		}, []);
 
-		useEffect(() => {
-			if (store && store.carWashes) {
-				console.log(store.carWashes);
-			}
-		}, [store]);
-
 		return (
 			<>
 				{store && store.carWashes && userPosition.length > 0 ? (
 					<Flex
-						h="100vh"
+						h="95%"
 						w="100vw"
 						justifyContent="space-evenly"
 						alignItems="center"

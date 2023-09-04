@@ -11,11 +11,12 @@ export const LoginPage: React.FC = () => {
 	const toast = useToast();
 	const { sendPhNumber, user } = useUser();
 	const [value, setValue] = useState<any>('');
+	const [isClicked, setIsClicked] = useState<boolean>(false);
 
 	const handleClick = async () => {
 		const phNumber = `+7 ${value}`;
-		console.log(`login page, phone number ${phNumber}`);
 		await sendPhNumber(phNumber);
+		setIsClicked(true);
 	};
 
 	useEffect(() => {
@@ -23,7 +24,7 @@ export const LoginPage: React.FC = () => {
 			setValue('');
 			if (user.phNumber) {
 				navigate('/verification');
-			} else if (user.error) {
+			} else if (user.error.response.status !== 401) {
 				toast({
 					containerStyle: {
 						marginTop: 'none',
@@ -44,7 +45,7 @@ export const LoginPage: React.FC = () => {
 	return (
 		<>
 			<Flex
-				h="100vh"
+				h="95vh"
 				w="100vw"
 				flexDir="column"
 				justifyContent="flex-start"
@@ -67,6 +68,7 @@ export const LoginPage: React.FC = () => {
 				>
 					<PhoneInput value={value} setValue={setValue} />
 					<OperButton
+						isLoading={isClicked}
 						title="Далее"
 						onClick={handleClick}
 						value={value.length === 13 ? value : null}

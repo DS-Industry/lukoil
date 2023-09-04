@@ -73,7 +73,6 @@ const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 				error: null,
 			});
 		} catch (error) {
-			console.log(error);
 			updateStore({ isLoading: false, error });
 		}
 	};
@@ -98,7 +97,6 @@ const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 			);
 			updateStore({ isLoading: false, error: null });
 		} catch (error: any) {
-			console.log(error);
 			updateStore({ isLoading: false, error });
 		}
 	};

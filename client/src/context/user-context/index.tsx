@@ -8,6 +8,7 @@ interface IUserPartial {
 	token?: string | null;
 	isLoading?: boolean;
 	error?: any | null;
+	isAuth? : boolean | null;
 }
 
 interface IUserContext {
@@ -17,6 +18,7 @@ interface IUserContext {
 	signIn: (verificationCode: string) => void;
 	sendPhNumber: (phNumber: string) => void;
 	getStore: () => void;
+	getMe: () => void;
 }
 
 const UserContext = React.createContext<IUserContext | null>(null);
@@ -30,6 +32,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		token: null,
 		isLoading: true,
 		error: null,
+		isAuth: null,
 	});
 
 	const updateStore = (data: IUserPartial) => {
@@ -40,8 +43,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	const getStore = () => {
 		let store: IUserPartial | any = secureLocalStorage.getItem('user-store');
-		console.log('herer 3232323');
-		console.log('this is store', store);
 		setUser(store);
 	};
 
@@ -49,21 +50,38 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		try {
 			updateStore({ isLoading: true });
 			const phone = phNumber.replaceAll(' ', '');
-			console.log('Отправка кода на номер ->', phone);
-			const response = await api.post('/auth/send/otp', {
+			await api.post('/auth/send/otp', {
 				phone,
 			});
-			console.log(response.data);
 			updateStore({
 				isLoading: false,
 				phNumber,
 				error: null,
 			});
 		} catch (error) {
-			console.log(error);
 			updateStore({ isLoading: false, error, phNumber: null });
 		}
 	};
+
+	const getMe = async () => {
+		try {
+			const response = await api.get('/auth/me',
+				{
+					headers: {
+						Authorization: `Bearer ${user && user.token ? user.token : null}`,
+					},
+				}
+			);
+			console.log(response.data);
+
+			updateStore({
+				isLoading: false,
+				isAuth: true
+			})
+		} catch (error) {
+			updateStore({isLoading: false, isAuth: false, error});
+		}
+	}
 
 	const signUp = async (otp: string) => {
 		try {
@@ -76,7 +94,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				otp,
 				partnerCard,
 			});
-			console.log(response.data);
 			updateStore({
 				isLoading: false,
 				token: response.data.accessToken,
@@ -84,7 +101,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				error: null,
 			});
 		} catch (error: any) {
-			console.log(error);
 			updateStore({ isLoading: false, error });
 		}
 	};
@@ -92,9 +108,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		try {
 			updateStore({ isLoading: true });
 			const phone = user.phNumber?.replaceAll(' ', '');
-			console.log('Отправка кода для авторизации');
-			console.log('Номер телефона: ', phone);
-			console.log(otp);
 			const response = await api.post('/auth/login', {
 				phone,
 				otp,
@@ -107,7 +120,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				error: null,
 			});
 		} catch (error) {
-			console.log(error);
 			updateStore({ isLoading: false, error: error });
 		}
 	};
@@ -121,6 +133,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				signUp,
 				sendPhNumber,
 				getStore,
+				getMe
 			}}
 		>
 			{children}

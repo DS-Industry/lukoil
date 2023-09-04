@@ -24,7 +24,6 @@ export const PaymentPage = () => {
 				// },
 				// @ts-ignore
 				error_callback: function (error) {
-					console.log(error);
 					navigate('/error');
 				},
 			});

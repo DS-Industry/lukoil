@@ -91,7 +91,7 @@ export const VerificationPage = () => {
 	}, [isButtonDisabled]);
 
 	return (
-		<Box h="100vh">
+		<Box h="95vh">
 			<Header
 				fontSize="28px"
 				fontWeight="800"
