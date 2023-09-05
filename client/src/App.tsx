@@ -19,7 +19,7 @@ function App() {
 					<CarWashProvider>
 						<Routes>
 							<Route path="/" element={<InstructionPage />} />
-							<Route path="/#/login" element={<LoginPage />} />
+							<Route path="/login" element={<LoginPage />} />
 							<Route path="/verification" element={<VerificationPage />} />
 							<Route path="/home" element={<HomePage />} />
 							<Route path="/order" element={<OrderPage />} />
