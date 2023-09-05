@@ -3,7 +3,7 @@ import secureLocalStorage from 'react-secure-storage';
 import api from '../../api';
 
 interface IUserPartial {
-	partnerCard?: string | number | null;
+	partnerCard?: string | null;
 	phNumber?: string | null;
 	token?: string | null;
 	isLoading?: boolean;
@@ -88,7 +88,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 			const partnerCard = user.partnerCard;
 			const phone = user.phNumber?.replaceAll(' ', '');
 			updateStore({ isLoading: true });
-			console.log('Отправка кода для регистрации');
 			const response = await api.post('/auth/register', {
 				phone,
 				otp,

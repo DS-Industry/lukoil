@@ -41,7 +41,7 @@ export const InstructionPage: React.FC = () => {
 
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
-		const partnerCard: number = Number(queryParams.get('partnerCard'));
+		const partnerCard  = queryParams.get('partnerCard');
 		if (partnerCard) {
 			updateStore({
 				partnerCard,
