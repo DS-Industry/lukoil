@@ -2,12 +2,17 @@ import React from 'react';
 import secureLocalStorage from 'react-secure-storage';
 import api from '../../api';
 
+interface IUserError {
+	message : string,
+	code: number
+}
+
 interface IUserPartial {
 	partnerCard?: string | null;
 	phNumber?: string | null;
 	token?: string | null;
 	isLoading?: boolean;
-	error?: any | null;
+	error?: IUserError | null;
 	isAuth? : boolean | null;
 }
 
@@ -20,6 +25,7 @@ interface IUserContext {
 	getStore: () => void;
 	getMe: () => void;
 }
+
 
 const UserContext = React.createContext<IUserContext | null>(null);
 
@@ -50,16 +56,18 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 		try {
 			updateStore({ isLoading: true });
 			const phone = phNumber.replaceAll(' ', '');
-			await api.post('/auth/send/otp', {
+			const response = await api.post('/auth/send/otp', {
 				phone,
 			});
+			console.log(response);
 			updateStore({
 				isLoading: false,
-				phNumber,
-				error: null,
+				phNumber : response.data.target,
+				error: {message: response.data.message, code: response.status},
 			});
-		} catch (error) {
-			updateStore({ isLoading: false, error, phNumber: null });
+		} catch (error: any) {
+			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
+			updateStore({ isLoading: false, error: customError, phNumber: null });
 		}
 	};
 
@@ -78,8 +86,11 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				isLoading: false,
 				isAuth: true
 			})
-		} catch (error) {
-			updateStore({isLoading: false, isAuth: false, error});
+		} catch (error: any) {
+			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error};
+			console.log(error);
+			console.log(customError);
+			updateStore({ isLoading: false, error: customError, isAuth: false });
 		}
 	}
 
@@ -100,7 +111,10 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				error: null,
 			});
 		} catch (error: any) {
-			updateStore({ isLoading: false, error });
+			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
+			console.log(error);
+			console.log(customError);
+			updateStore({ isLoading: false, error: customError});
 		}
 	};
 	const signIn = async (otp: string) => {
@@ -118,8 +132,11 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				partnerCard: response.data.user.partnerCard,
 				error: null,
 			});
-		} catch (error) {
-			updateStore({ isLoading: false, error: error });
+		} catch (error: any) {
+			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
+			console.log(error);
+			console.log(customError);
+			updateStore({ isLoading: false, error: customError});
 		}
 	};
 

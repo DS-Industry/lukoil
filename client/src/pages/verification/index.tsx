@@ -16,7 +16,7 @@ interface IVerificationCode {
 export const VerificationPage = () => {
 	const toast = useToast();
 	const navigate = useNavigate();
-	const { user, signIn, signUp, sendPhNumber, getStore } = useUser();
+	const { user, signIn, signUp, sendPhNumber, getStore, updateStore } = useUser();
 	const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 	const [code, setCode] = useState<IVerificationCode>({
 		firstN: '',
@@ -49,9 +49,27 @@ export const VerificationPage = () => {
 		if (!user.isLoading) {
 			if (user.token) {
 				navigate('/home');
-			} else if (user.error && user.error.response.status === 404) {
+			}
+			 if (user.error && user.error.code === 404) {
 				const result = Object.values(code).join('');
 				signUp(result);
+			} else if (user.error && user.error.code === 500) {
+				toast({
+					containerStyle: {
+						marginTop: 'none',
+						width: '95vw',
+					},
+					position: 'top',
+					title: 'Ошибка регистрации',
+					variant: 'subtle',
+					description: user.error.message,
+					status: 'error',
+					duration: 9000,
+					isClosable: true,
+				});
+				updateStore({
+					error: null
+				})
 			} else if (user.error) {
 				toast({
 					containerStyle: {
@@ -59,13 +77,16 @@ export const VerificationPage = () => {
 						width: '95vw',
 					},
 					position: 'top',
-					title: 'Кажется что-то пошло не так...',
+					title: 'Ошибка авторизации',
 					variant: 'subtle',
-					description: 'Возможно, вы ввели неправильный код',
+					description: user.error.message,
 					status: 'error',
 					duration: 9000,
 					isClosable: true,
 				});
+				updateStore({
+					error: null
+				})
 			}
 			setCode({
 				firstN: '',

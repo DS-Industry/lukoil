@@ -9,9 +9,10 @@ import { PhoneInput } from '../../component/inputs/phone-input';
 export const LoginPage: React.FC = () => {
 	const navigate = useNavigate();
 	const toast = useToast();
-	const { sendPhNumber, user } = useUser();
+	const { sendPhNumber, user, updateStore } = useUser();
 	const [value, setValue] = useState<any>('');
 	const [isClicked, setIsClicked] = useState<boolean>(false);
+	
 
 	const handleClick = async () => {
 		const phNumber = `+7 ${value}`;
@@ -19,12 +20,16 @@ export const LoginPage: React.FC = () => {
 		setIsClicked(true);
 	};
 
+
 	useEffect(() => {
 		if (!user.isLoading) {
 			setValue('');
-			if (user.phNumber) {
+			if (user.error && user.error.message === 'Success') {
 				navigate('/verification');
-			} else if (user.error.response.status !== 401) {
+				updateStore({
+					error: null,
+				})
+			} else if (user.error && user.error.code !== 404 && user.error.code !== 401) {
 				toast({
 					containerStyle: {
 						marginTop: 'none',
@@ -38,6 +43,9 @@ export const LoginPage: React.FC = () => {
 					isClosable: true,
 					position: 'top',
 				});
+				updateStore({
+					error: null,
+				})
 			}
 		}
 	}, [user.isLoading]);

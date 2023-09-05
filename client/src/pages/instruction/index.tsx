@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, useToast } from '@chakra-ui/react';
 import { Header } from '../../component/header';
 import { instructionList } from '../../utill/variabels';
 import { OperButton } from '../../component/buttons/oper_button';
@@ -13,20 +13,44 @@ export const InstructionPage: React.FC = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [ isClicked, setIsClicked ] = useState<boolean>(false);
-
+	const [ partnerCard, setPartnerCard ] = useState<string>('');
+	const toast = useToast();
 	const { updateStore, getMe, user, getStore } = useUser();
 
 	const handleClick = () => {
+		const queryParams = new URLSearchParams(location.search);
+		const partnerCardParam  = queryParams.get('partnerCard');
+		if (partnerCardParam) {
+			setPartnerCard(partnerCardParam);
+		} 
 		getMe();
 		setIsClicked(true);
+
 	};
 
 	useEffect(()=> {
 	if (isClicked) {
-		if (!user) {
-			navigate('/login');
-		} else if (user && !user.isAuth) {
-			navigate('/login');
+		if (!user || (user && !user.isAuth)) {
+			if (partnerCard) {
+				updateStore({
+					partnerCard :partnerCard,
+				})
+				setIsClicked(false);
+				navigate('/login');
+			} else {
+				toast({
+					containerStyle: {
+						marginTop: 'none',
+						width: '95vw',
+					},
+					title: 'Не указан номер карты ЛУКОЙЛ',
+					status: 'warning',
+					duration: 9000,
+					isClosable: true,
+					position: 'top',
+				});
+			}
+			setIsClicked(false);
 		} else if (user && user.isAuth) {
 			navigate('/home');
 		}
@@ -37,17 +61,6 @@ export const InstructionPage: React.FC = () => {
 		getStore();
 	}, [])
 
-
-
-	useEffect(() => {
-		const queryParams = new URLSearchParams(location.search);
-		const partnerCard  = queryParams.get('partnerCard');
-		if (partnerCard) {
-			updateStore({
-				partnerCard,
-			});
-		}
-	}, []);
 
 	return (
 		<Flex

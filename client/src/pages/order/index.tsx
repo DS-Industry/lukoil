@@ -41,6 +41,7 @@ export const OrderPage: React.FC = () => {
 			getOrderStore();
 			getCWStore();
 			getUserStore();
+			console.log(userStore, orderStore, carWashStore)
 		} else if (
 				!orderStore ||
 				!userStore ||
