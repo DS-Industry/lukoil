@@ -11,47 +11,15 @@ export const LoginPage: React.FC = () => {
 	const toast = useToast();
 	const { sendPhNumber, user, updateStore } = useUser();
 	const [value, setValue] = useState<any>('');
-	const [isClicked, setIsClicked] = useState<boolean>(false);
 	const location = useLocation();
 	const partnerCard = location.state && location.state.partnerCard;
 	const { isLoading, error } = user;
-	console.log(partnerCard + ' Lukoil');
 	const handleClick = async () => {
 		const phNumber = `+7 ${value}`;
 		await sendPhNumber(phNumber);
+		setValue('')
 	};
 
-
-	/*
-	useEffect(() => {
-		if (!user.isLoading) {
-			setValue('');
-			if (user.error && user.error.message === 'Success') {
-				navigate('/verification');
-				updateStore({
-					error: null,
-				})
-			} else if (user.error && user.error.code !== 404 && user.error.code !== 401) {
-				toast({
-					containerStyle: {
-						marginTop: 'none',
-						width: '95vw',
-					},
-					title: 'Кажется что-то пошло не так',
-					description:
-						'На сервере ведутся работы, приносим извинения за доставленные неудобства',
-					status: 'error',
-					duration: 9000,
-					isClosable: true,
-					position: 'top',
-				});
-				updateStore({
-					error: null,
-				})
-			}
-		}
-	}, [user.isLoading]);
-	 */
 
 	useEffect(() => {
 		if (!user.isLoading && error && error.code == 201) {

@@ -65,7 +65,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 			const response = await api.post('/auth/send/otp', {
 				phone: formattedPhone,
 			});
-			console.log(response);
 			updateStore({
 				isLoading: false,
 				error: {message: response.data.message, code: response.status},
@@ -78,8 +77,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	const getMe = async () => {
 		try {
-			console.log('calling get me');
-			console.log(`Token: ${user.token}`)
 			const response = await api.get('/auth/me',
 				{
 					headers: {
@@ -87,8 +84,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 					},
 				}
 			);
-			console.log(response.data);
-
 			updateStore({
 				isLoading: false,
 				isAuth: true
@@ -132,7 +127,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				error: null,
 			});
 		} catch (error: any) {
-			console.log(error);
 			const code: number = error.response?.data?.statusCode;
 
 			if (code === 404) {
@@ -152,8 +146,8 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 						isAuth: true,
 						error: null,
 					});
-				} catch (registerError) {
-					const code = error.response?.data?.statusCode;
+				} catch (registerError: any) {
+					const code = registerError.response?.data?.statusCode;
 					let message;
 					switch (code) {
 						case 404:

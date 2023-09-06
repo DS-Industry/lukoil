@@ -15,7 +15,7 @@ export const InstructionPage: React.FC = () => {
 	const toast = useToast();
 	const { getMe, user, updateStore } = useUser();
 	const [searchParams] = useSearchParams();
-	const cardId: string | null = searchParams.get('cardId');
+	const cardId: string | null = searchParams.get('CardId');
 	const navigate = useNavigate();
 
 
@@ -28,9 +28,6 @@ export const InstructionPage: React.FC = () => {
 
 	useEffect(() => {
 		getMe();
-		console.log(`Checking for authed user`);
-		console.log(`Current user: ${JSON.stringify(user)}`);
-
 		if (!cardId) {
 			toast({
 				containerStyle: {

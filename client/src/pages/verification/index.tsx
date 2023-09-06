@@ -48,68 +48,19 @@ export const VerificationPage = () => {
 		if (code.firstN && code.secondN && code.thirdN && code.fourthN) {
 			const otp = Object.values(code).join('');
 			signIn(otp, phone, partnerCard);
-		}
-	}, [code.firstN, code.secondN, code.thirdN, code.fourthN]);
-
-	// check OTP verification
-/*
-	useEffect(() => {
-		if (!user.isLoading) {
-			if (user.token) {
-				navigate('/home');
-			}
-			 if (user.error && user.error.code === 404) {
-				const result = Object.values(code).join('');
-				signUp(result);
-			} else if (user.error && user.error.code === 500) {
-				toast({
-					containerStyle: {
-						marginTop: 'none',
-						width: '95vw',
-					},
-					position: 'top',
-					title: 'Ошибка регистрации',
-					variant: 'subtle',
-					description: user.error.message,
-					status: 'error',
-					duration: 9000,
-					isClosable: true,
-				});
-				updateStore({
-					error: null
-				})
-			} else if (user.error) {
-				toast({
-					containerStyle: {
-						marginTop: 'none',
-						width: '95vw',
-					},
-					position: 'top',
-					title: 'Ошибка авторизации',
-					variant: 'subtle',
-					description: user.error.message,
-					status: 'error',
-					duration: 9000,
-					isClosable: true,
-				});
-				updateStore({
-					error: null
-				})
-			}
 			setCode({
 				firstN: '',
 				secondN: '',
 				thirdN: '',
-				fourthN: '',
-			});
+				fourthN: ''
+			})
 		}
-	}, [user.isLoading]);
+	}, [code.firstN, code.secondN, code.thirdN, code.fourthN]);
 
- */
 
 	// disabled button timer use effect
 	useEffect(() => {
-		if (error && error.code != 404) {
+		if (error && error.code != 404 && error.code != 201) {
 			toast({
 				containerStyle: {
 					marginTop: 'none',
