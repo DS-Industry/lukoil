@@ -48,12 +48,6 @@ export const VerificationPage = () => {
 		if (code.firstN && code.secondN && code.thirdN && code.fourthN) {
 			const otp = Object.values(code).join('');
 			signIn(otp, phone, partnerCard);
-			setCode({
-				firstN: '',
-				secondN: '',
-				thirdN: '',
-				fourthN: ''
-			})
 		}
 	}, [code.firstN, code.secondN, code.thirdN, code.fourthN]);
 
