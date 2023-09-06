@@ -17,7 +17,6 @@ export const LoginPage: React.FC = () => {
 	const handleClick = async () => {
 		const phNumber = `+7 ${value}`;
 		await sendPhNumber(phNumber);
-		setValue('')
 	};
 
 

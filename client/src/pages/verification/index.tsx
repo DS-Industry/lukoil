@@ -104,7 +104,7 @@ export const VerificationPage = () => {
 						Введите код из СМС
 					</Text>
 					<Text fontSize="15px" color="#C7C7CB" fontWeight="500" mb="30px">
-						Код направлен на {user.phNumber}
+						Код направлен на {phone}
 					</Text>
 
 					<VerificationList code={code} setCode={setCode} />
