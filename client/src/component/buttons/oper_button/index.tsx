@@ -25,14 +25,10 @@ export const OperButton: React.FC<IOperButton> = ({
 	isLoading=false
 }) => {
 	const { updateStore } = useOrder();
-	const { updateStore: updateUserStore } = useUser();
 	const { store: carWashStore } = useCarWash();
 
 	const handleClick = () => {
 		if (switchCarWashType === 'tel') {
-			updateUserStore({
-				phNumber: value,
-			});
 			onClick();
 		}
 		if (switchCarWashType === 'bay') {

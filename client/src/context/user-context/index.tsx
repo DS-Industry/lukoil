@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import secureLocalStorage from 'react-secure-storage';
 import api from '../../api';
 
@@ -19,11 +19,23 @@ interface IUserPartial {
 interface IUserContext {
 	user: IUserPartial;
 	updateStore: (data: IUserPartial) => void;
-	signUp: (verificationCode: string) => void;
-	signIn: (verificationCode: string) => void;
+	signIn: (verificationCode: string, phone: string, partnerCard: string) => void;
 	sendPhNumber: (phNumber: string) => void;
-	getStore: () => void;
 	getMe: () => void;
+}
+
+const initState: IUserPartial = {
+	partnerCard: null,
+	phNumber: null,
+	token: null,
+	isLoading: true,
+	error: null,
+	isAuth: null,
+}
+
+const getInitState = () => {
+	const user: IUserPartial | any = secureLocalStorage.getItem('user-store');
+	return user ? JSON.parse(user) : initState;
 }
 
 
@@ -32,47 +44,42 @@ const UserContext = React.createContext<IUserContext | null>(null);
 const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [user, setUser] = React.useState<IUserPartial>({
-		partnerCard: null,
-		phNumber: null,
-		token: null,
-		isLoading: true,
-		error: null,
-		isAuth: null,
-	});
+	const [user, setUser] = React.useState<IUserPartial>(getInitState);
+
+	useEffect(() => {
+		secureLocalStorage.setItem('user-store', JSON.stringify(user));
+	}, [user])
 
 	const updateStore = (data: IUserPartial) => {
-		const state = { ...user, ...data };
-		secureLocalStorage.setItem('user-store', state);
-		getStore();
+		setUser((prev) => ({
+			...prev,
+			...data
+		}));
 	};
 
-	const getStore = () => {
-		let store: IUserPartial | any = secureLocalStorage.getItem('user-store');
-		setUser(store);
-	};
 
 	const sendPhNumber = async (phNumber: string) => {
 		try {
 			updateStore({ isLoading: true });
-			const phone = phNumber.replaceAll(' ', '');
+			const formattedPhone = phNumber.replaceAll(' ', '');
 			const response = await api.post('/auth/send/otp', {
-				phone,
+				phone: formattedPhone,
 			});
 			console.log(response);
 			updateStore({
 				isLoading: false,
-				phNumber : response.data.target,
 				error: {message: response.data.message, code: response.status},
 			});
 		} catch (error: any) {
-			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
-			updateStore({ isLoading: false, error: customError, phNumber: null });
+			const customError: IUserError = { code: error.response?.data?.statusCode || 500, message: 'Приносим извинения повторите попытку еще раз' };
+			updateStore({ isLoading: false, error: customError });
 		}
 	};
 
 	const getMe = async () => {
 		try {
+			console.log('calling get me');
+			console.log(`Token: ${user.token}`)
 			const response = await api.get('/auth/me',
 				{
 					headers: {
@@ -87,68 +94,107 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				isAuth: true
 			})
 		} catch (error: any) {
-			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error};
-			console.log(error);
-			console.log(customError);
-			updateStore({ isLoading: false, error: customError, isAuth: false });
+			const code = error.response?.data?.statusCode;
+			let message;
+			switch (code) {
+				case 404:
+					message = 'Пользователь с данными номером телефона не найден';
+					break;
+				case 401:
+					message = 'Пользователь неавторизованный';
+					break;
+				default:
+					message = 'Что то пошло не так...';
+					break;
+			}
+			const customError: IUserError = { code, message };
+			updateStore({ isLoading: false, isAuth: false, error: customError });
 		}
 	}
 
-	const signUp = async (otp: string) => {
-		try {
-			const partnerCard = user.partnerCard;
-			const phone = user.phNumber?.replaceAll(' ', '');
-			updateStore({ isLoading: true });
-			const response = await api.post('/auth/register', {
-				phone,
-				otp,
-				partnerCard,
-			});
-			updateStore({
-				isLoading: false,
-				token: response.data.accessToken,
-				phNumber: response.data.user.phone,
-				error: null,
-			});
-		} catch (error: any) {
-			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
-			console.log(error);
-			console.log(customError);
-			updateStore({ isLoading: false, error: customError});
-		}
-	};
-	const signIn = async (otp: string) => {
+	const signIn = async (otp: string, phone: string, partnerCard: string) => {
+		const formattedPhone = phone.replaceAll(' ', '');
 		try {
 			updateStore({ isLoading: true });
-			const phone = user.phNumber?.replaceAll(' ', '');
-			const response = await api.post('/auth/login', {
-				phone,
-				otp,
-			});
-			updateStore({
-				isLoading: false,
-				token: response.data.accessToken,
-				phNumber: response.data.user.phone,
-				partnerCard: response.data.user.partnerCard,
-				error: null,
-			});
-		} catch (error: any) {
-			const customError: IUserError = {code: error.response.data.statusCode, message: error.response.data.error}
-			console.log(error);
-			console.log(customError);
-			updateStore({ isLoading: false, error: customError});
-		}
-	};
 
+			// Attempt to log in
+			const loginResponse = await api.post('/auth/login', {
+				phone: formattedPhone,
+				otp,
+			});
+
+			updateStore({
+				isLoading: false,
+				token: loginResponse.data.accessToken,
+				phNumber: loginResponse.data.user.phone,
+				partnerCard: loginResponse.data.user.partnerCard,
+				isAuth: true,
+				error: null,
+			});
+		} catch (error: any) {
+			console.log(error);
+			const code: number = error.response?.data?.statusCode;
+
+			if (code === 404) {
+				// If the error code is 404, user not found, attempt registration
+				try {
+					const registerResponse = await api.post('/auth/register', {
+						phone: formattedPhone,
+						otp,
+						partnerCard,
+					});
+
+					updateStore({
+						isLoading: false,
+						token: registerResponse.data.accessToken,
+						phNumber: registerResponse.data.user.phone,
+						partnerCard: registerResponse.data.user.partnerCard,
+						isAuth: true,
+						error: null,
+					});
+				} catch (registerError) {
+					const code = error.response?.data?.statusCode;
+					let message;
+					switch (code) {
+						case 404:
+							message = 'Пользователь с данными номером телефона уже зарегистрирован';
+							break;
+						case 401:
+							message = 'Введен не верный код';
+							break;
+						default:
+							message = 'Что то пошло не так...';
+							break;
+					}
+					const customError: IUserError = { code, message };
+					updateStore({ isLoading: false, isAuth: false, error: customError });
+				}
+			} else {
+				const code = error.response?.data?.statusCode;
+				let message;
+				switch (code) {
+					case 404:
+						message = 'Пользователь с данными номером телефона не найден';
+						break;
+					case 401:
+						message = 'Введен не верный код';
+						break;
+					default:
+						message = 'Что то пошло не так...';
+						break;
+				}
+				const customError: IUserError = { code, message };
+				updateStore({ isLoading: false, isAuth: false, error: customError });
+			}
+		}
+	};
 	return (
 		<UserContext.Provider
 			value={{
 				user,
 				updateStore,
 				signIn,
-				signUp,
 				sendPhNumber,
-				getStore,
 				getMe
 			}}
 		>

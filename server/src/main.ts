@@ -11,7 +11,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   app.enableCors({
-    origin: ['https://app.lukoil.ds-mobile.ru', 'http://localhost:3000', 'http://app.lukoil.ds-mobile.ru'],
+    origin: ['https://app.lukoil.ds-mobile.ru', 'http://localhost:3001', 'http://app.lukoil.ds-mobile.ru'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // if you need to send cookies or credentials
   });

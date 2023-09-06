@@ -2,64 +2,57 @@ import { Box, Flex, useToast } from '@chakra-ui/react';
 import { Header } from '../../component/header';
 import { instructionList } from '../../utill/variabels';
 import { OperButton } from '../../component/buttons/oper_button';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Logo } from '../../component/logo';
 import { InstructionList } from '../../component/hard-data/instructions';
 import { MainText } from '../../component/hard-data/main-text';
 import { useUser } from '../../context/user-context';
-
+import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 export const InstructionPage: React.FC = () => {
-	const navigate = useNavigate();
-	const location = useLocation();
-	const [ isClicked, setIsClicked ] = useState<boolean>(false);
-	const [ partnerCard, setPartnerCard ] = useState<string>('');
+
+	const [ isClicked, setIsClicked ] = useState<boolean>(false)
 	const toast = useToast();
-	const { updateStore, getMe, user, getStore } = useUser();
+	const { getMe, user, updateStore } = useUser();
+	const [searchParams] = useSearchParams();
+	const cardId: string | null = searchParams.get('cardId');
+	const navigate = useNavigate();
+
 
 	const handleClick = () => {
-		const queryParams = new URLSearchParams(location.search);
-		const partnerCardParam  = queryParams.get('partnerCard');
-		if (partnerCardParam) {
-			setPartnerCard(partnerCardParam);
-		} 
-		getMe();
-		setIsClicked(true);
-
+		const destination = user && !user.isAuth ? '/login' : '/home';
+		navigate(destination, { state: { partnerCard: cardId } });
 	};
 
-	useEffect(()=> {
-	if (isClicked) {
-		if (!user || (user && !user.isAuth)) {
-			if (partnerCard) {
-				updateStore({
-					partnerCard :partnerCard,
-				})
-				setIsClicked(false);
-				navigate('/login');
-			} else {
-				toast({
-					containerStyle: {
-						marginTop: 'none',
-						width: '95vw',
-					},
-					title: 'Не указан номер карты ЛУКОЙЛ',
-					status: 'warning',
-					duration: 9000,
-					isClosable: true,
-					position: 'top',
-				});
-			}
-			setIsClicked(false);
-		} else if (user && user.isAuth) {
-			navigate('/home');
-		}
-		}
-	}, [user])
 
-	useEffect(()=> {
-		getStore();
-	}, [])
+
+	useEffect(() => {
+		getMe();
+		console.log(`Checking for authed user`);
+		console.log(`Current user: ${JSON.stringify(user)}`);
+
+		if (!cardId) {
+			toast({
+				containerStyle: {
+					marginTop: 'none',
+					width: '95vw',
+				},
+				title: 'Не указан номер карты лояльности ЛУКОЙЛ',
+				status: 'warning',
+				duration: 3000,
+				isClosable: true,
+				position: 'top',
+			});
+		}
+
+	},[])
+
+
+	useEffect(() => {
+		updateStore({
+			error: null
+		})
+	}, [user.error])
 
 
 	return (

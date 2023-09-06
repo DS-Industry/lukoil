@@ -1,7 +1,7 @@
 import { Box, Flex, Text, useToast } from '@chakra-ui/react';
 import { useUser } from '../../context/user-context';
 import { OperButton } from '../../component/buttons/oper_button';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Header } from '../../component/header';
 import { VerificationList } from '../../component/inputs/varification-input-list';
@@ -16,7 +16,7 @@ interface IVerificationCode {
 export const VerificationPage = () => {
 	const toast = useToast();
 	const navigate = useNavigate();
-	const { user, signIn, signUp, sendPhNumber, getStore, updateStore } = useUser();
+	const { user, signIn,  sendPhNumber, updateStore } = useUser();
 	const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 	const [code, setCode] = useState<IVerificationCode>({
 		firstN: '',
@@ -25,26 +25,34 @@ export const VerificationPage = () => {
 		fourthN: '',
 	});
 
+	const location = useLocation();
+	const partnerCard = location.state && location.state.partnerCard;
+	const phone = location.state && location.state.phone;
+
 	// send OTP code to phone number
 
-	const handleClick = () => {
-		if (user.phNumber) {
-			setIsButtonDisabled(true);
-			sendPhNumber(user.phNumber);
+	const { isLoading, error, isAuth } = user;
+
+	useEffect(() => {
+		if (isAuth && !isLoading){
+			navigate('/home')
 		}
+	}, [isAuth])
+	const handleClick = () => {
+			setIsButtonDisabled(true);
+			sendPhNumber(phone);
 	};
 
 	// send user OTP input
-
 	useEffect(() => {
 		if (code.firstN && code.secondN && code.thirdN && code.fourthN) {
-			const result = Object.values(code).join('');
-			signIn(result);
+			const otp = Object.values(code).join('');
+			signIn(otp, phone, partnerCard);
 		}
 	}, [code.firstN, code.secondN, code.thirdN, code.fourthN]);
 
 	// check OTP verification
-
+/*
 	useEffect(() => {
 		if (!user.isLoading) {
 			if (user.token) {
@@ -97,11 +105,28 @@ export const VerificationPage = () => {
 		}
 	}, [user.isLoading]);
 
-	// disabled button timer use effect
+ */
 
+	// disabled button timer use effect
 	useEffect(() => {
-		getStore();
-	}, []);
+		if (error && error.code != 404) {
+			toast({
+				containerStyle: {
+					marginTop: 'none',
+					width: '95vw',
+				},
+				title: 'Кажется что-то пошло не так',
+				description: error.message,
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+				position: 'top',
+			});
+			updateStore({
+				error: null,
+			});
+		}
+	},[isLoading])
 
 	useEffect(() => {
 		if (isButtonDisabled) {

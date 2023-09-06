@@ -27,7 +27,7 @@ export const OrderPage: React.FC = () => {
 		getStore: getCWStore,
 	} = useCarWash();
 
-	const { user: userStore, getStore: getUserStore } = useUser();
+	const { user: userStore} = useUser();
 
 	const handleClick = () => {
 		if (orderStore.carWashId) {
@@ -40,7 +40,6 @@ export const OrderPage: React.FC = () => {
 		if (userStore && userStore.isLoading) {
 			getOrderStore();
 			getCWStore();
-			getUserStore();
 			console.log(userStore, orderStore, carWashStore)
 		} else if (
 				!orderStore ||

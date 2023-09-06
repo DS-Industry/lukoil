@@ -4,12 +4,13 @@ import { OrderPage } from './pages/order';
 import { OrderProvider } from './context/order-context';
 import { CarWashProvider } from './context/carwash-context';
 import { InstructionPage } from './pages/instruction';
-import { UserProvider } from './context/user-context';
+import {UserProvider, useUser} from './context/user-context';
 import { PaymentPage } from './pages/payment';
 import { LoginPage } from './pages/login';
 import { VerificationPage } from './pages/verification';
 import { SuccessPaymentPage } from './pages/success-payment';
 import { ErrorPaymentPage } from './pages/error-payment';
+import {useEffect} from "react";
 
 function App() {
 	return (
