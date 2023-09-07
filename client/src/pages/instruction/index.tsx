@@ -15,13 +15,18 @@ export const InstructionPage: React.FC = () => {
 	const toast = useToast();
 	const { getMe, user, updateStore } = useUser();
 	const [searchParams] = useSearchParams();
-	const cardId: string | null = searchParams.get('CardId');
+	const cardId: string | null = searchParams.get('subid');
+
 	const navigate = useNavigate();
 
 
 	const handleClick = () => {
 		const destination = user && !user.isAuth ? '/login' : '/home';
-		navigate(destination, { state: { partnerCard: cardId } });
+		let correctCardId: string | null = null;
+		if (typeof cardId === 'string') {
+			correctCardId = cardId.replace('#', '');
+		}
+		navigate(destination, { state: { partnerCard: correctCardId } });
 	};
 
 
