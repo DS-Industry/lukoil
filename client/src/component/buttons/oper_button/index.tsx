@@ -60,7 +60,7 @@ export const OperButton: React.FC<IOperButton> = ({
 				bg={!disabled ? 'colors.PRIMARY_RED' : '#D2D3D9'}
 				w="100%"
 				h="46px"
-				mb={switchCarWashType === 'bay' || switchCarWashType === 'sum' ? "16px" :"64px"}
+				mb={switchCarWashType === 'bay' || switchCarWashType === 'sum' ? "16px" :"16px"}
 				borderRadius="4px"
 				color="colors.WHITE"
 				onClick={handleClick}

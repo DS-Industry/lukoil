@@ -20,18 +20,20 @@ code {
 	font-weight: 500;
 	font-family: 'Inter';
 	height: 30px;
-	padding: 5px 2px;
+	min-width: 123px;
+	padding: 5px;
 	border-radius: 8px;
 	transform: rotate(180deg);
 }
 
 .ymaps-2-1-79-balloon {
+	margin-left: -7px !important;
 	box-shadow: none !important;
 	transform: rotate(180deg) !important;
   }
 
 .ymaps-2-1-79-balloon__content {
-	padding: 0 !important;
+	padding: 0px !important;
 	background: transparent !important;
 	margin: 0 !important;
 	border: none !important;
