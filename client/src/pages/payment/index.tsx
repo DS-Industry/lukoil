@@ -14,7 +14,6 @@ export const PaymentPage = () => {
 			// @ts-ignore
 			const checkout = new window.YooMoneyCheckoutWidget({
 				confirmation_token: store.paymentTocken, // Your confirmation token obtained from YooKassa// Your completion payment page URL
-
 				// Uncomment the following block if you need to customize the widget's appearance
 				// customization: {
 				//   colors: {
@@ -24,7 +23,9 @@ export const PaymentPage = () => {
 				// },
 				// @ts-ignore
 				error_callback: function (error) {
+					console.log(error);
 					navigate('/error');
+					checkout.destroy();
 				},
 			});
 
