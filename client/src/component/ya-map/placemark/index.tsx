@@ -49,7 +49,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 	const defaultCords = [55.755811, 37.617617];
 	const [distance, setDistance] = useState<number>(0);
 	const balloonData =
-		'<div class="baloon-content .ymaps-2-1-79-balloon__tail .ymaps-2-1-79-balloon__layout" ><p> АМС далеко от вас </p></div>';
+		'<div class="baloon-content .ymaps-2-1-79-balloon__tail .ymaps-2-1-79-balloon__layout" ><p>АМС далеко от вас</p></div>';
 
 	const location = useGeoLocation();
 	useEffect(() => {
