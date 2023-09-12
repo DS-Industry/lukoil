@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { useOrder } from '../../context/order-context';
 import { useNavigate } from 'react-router-dom';
 export const PaymentPage = () => {
-	const { store, sendOrder } = useOrder();
+	const { store, sendOrder, getStore } = useOrder();
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (store.paymentTocken) {
+
 		const script = document.createElement('script');
 		script.src = 'https://yookassa.ru/checkout-widget/v1/checkout-widget.js';
 		script.async = true;
@@ -31,7 +33,6 @@ export const PaymentPage = () => {
 
 			checkout.on('success', async () => {
 				//Код, который нужно выполнить после успешной оплаты.
-				console.log('Order start full');
 				await sendOrder();
 				navigate('/success');
 				//Удаление инициализированного виджета
@@ -48,6 +49,14 @@ export const PaymentPage = () => {
 		return () => {
 			document.head.removeChild(script);
 		};
-	}, []);
+	}
+	}, [store.paymentTocken]);
+
+	useEffect(() => {
+		if (!store.paymentTocken) {
+			getStore();
+		}
+	}, [])
+
 	return <div id="payment-form"></div>;
 };
