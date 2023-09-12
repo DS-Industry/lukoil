@@ -109,7 +109,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 						>
 							<Map
 								width="100%"
-								height="90%"
+								height="100%"
 								state={mapState}
 								modules={[
 									'control.ZoomControl',
