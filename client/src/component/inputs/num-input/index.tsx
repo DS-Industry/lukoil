@@ -46,7 +46,6 @@ export const NumInput: React.FC<INumInput> = ({
 			alignItems="center"
 			flexDir="column"
 			w="100%"
-			mt="20px"
 		>
 			<Text
 				fontSize="20px"

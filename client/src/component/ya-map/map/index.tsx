@@ -1,4 +1,4 @@
-import { Flex, Spinner } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import {
 	YMaps,
 	Map,
@@ -10,7 +10,6 @@ import React, {useEffect, useState} from 'react';
 import { CustomPlacemark } from '../placemark';
 import GeoSVG from '../../../assets/icons/geo.svg';
 import ActiveGeoSVG from '../../../assets/icons/geo-2.svg';
-import { CustomAlert } from '../../alert';
 import { useCarWash } from '../../../context/carwash-context';
 import { Navbar } from '../../nav-bar';
 import useGeoLocation from "../../../hooks/location";
@@ -66,6 +65,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 		useEffect(() => {
 			if (location.loaded && location.coordinates) {
 				// Set the map's center based on the user's location
+				setUserPosition(location.coordinates);
 				setMapState({
 					center: location.coordinates,
 					zoom: 14, // Zoom in for a closer view
@@ -95,7 +95,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 		return (
 			<>
 					<Flex
-						h="85%"
+						h="90%"
 						w="100vw"
 						justifyContent="space-evenly"
 						alignItems="center"

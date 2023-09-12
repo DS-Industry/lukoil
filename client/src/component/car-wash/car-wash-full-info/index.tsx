@@ -15,7 +15,7 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 	distance,
 }) => {
 	return (
-		<Flex flexDir="column" pt="28px" h="80vh">
+		<Flex flexDir="column" h="80vh">
 			<CarWashMap
 				isDisabled={true}
 				title={carWash.name}

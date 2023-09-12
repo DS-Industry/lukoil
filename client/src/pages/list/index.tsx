@@ -23,6 +23,7 @@ export const ListPage: React.FC<IListPage> = ({
 	const [term, setTerm] = useState<string>('');
 	const { store } = useCarWash();
 	const [carWashList, setCarWashList] = useState<any>();
+	const [defaultCoords, setDefaultCoords ] = useState<number[]>([55.755811, 37.617617]);
 
 	useEffect(() => {
 		const list: Array<any> = [];
@@ -73,10 +74,9 @@ export const ListPage: React.FC<IListPage> = ({
 						);
 					})
 					.map((filteredCarWash: any, index: number) => {
-						console.log(filteredCarWash);
 						const distance = calculateDistance(
-							userPosition[0],
-							userPosition[1],
+							userPosition.length > 1 ? userPosition[0] : defaultCoords[0],
+							userPosition.length > 1 ? userPosition[1] : defaultCoords[1],
 							filteredCarWash.coords[0],
 							filteredCarWash.coords[1]
 						);

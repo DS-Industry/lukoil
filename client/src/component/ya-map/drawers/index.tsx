@@ -8,7 +8,6 @@ import { ListPage } from '../../../pages/list';
 import { YandexMaps } from '../map';
 import { CarWashMainInfo } from '../../car-wash/car-wash-main-info';
 import { SelectBay } from '../../select-bay';
-import useGeoLocation from "../../../hooks/location";
 
 export const CustomYMap = () => {
 	const navigate = useNavigate();
