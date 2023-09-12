@@ -58,7 +58,7 @@ const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 				{
 					amount,
 					phone: user.phNumber,
-					redirect_url: process.env.REACT_APP_REDIRECT_URL,
+					redirect_url: 'redirect_url',
 				},
 				{
 					headers: {
