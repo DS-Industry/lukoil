@@ -35,7 +35,7 @@ const initState: IUserPartial = {
 
 const getInitState = () => {
 	const user: IUserPartial | any = secureLocalStorage.getItem('user-store');
-	return user ? JSON.parse(user) : initState;
+	return user ? user : initState;
 }
 
 
@@ -47,7 +47,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [user, setUser] = React.useState<IUserPartial>(getInitState);
 
 	useEffect(() => {
-		secureLocalStorage.setItem('user-store', JSON.stringify(user));
+		secureLocalStorage.setItem('user-store', user);
 	}, [user])
 
 	const updateStore = (data: IUserPartial) => {

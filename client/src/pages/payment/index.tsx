@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useOrder } from '../../context/order-context';
 import { useNavigate } from 'react-router-dom';
 export const PaymentPage = () => {
-	const { store, sendOrder, getStore } = useOrder();
+	const { store, sendOrder, updateStore } = useOrder();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -14,6 +14,7 @@ export const PaymentPage = () => {
 		script.onload = () => {
 			// Initialization of the widget
 			// @ts-ignore
+			// @ts-ignore
 			const checkout = new window.YooMoneyCheckoutWidget({
 				confirmation_token: store.paymentTocken, // Your confirmation token obtained from YooKassa// Your completion payment page URL
 				// Uncomment the following block if you need to customize the widget's appearance
@@ -23,7 +24,11 @@ export const PaymentPage = () => {
 				//     background: '#F2F3F5', // HEX color value for the payment form and its elements
 				//   },
 				// },
-				// @ts-ignore
+
+				customization: {
+					modal: true
+				},
+				//@ts-ignore
 				error_callback: function (error) {
 					console.log(error);
 					navigate('/error');
@@ -39,6 +44,30 @@ export const PaymentPage = () => {
 				checkout.destroy();
 			});
 
+			checkout.on('fail', async () => {
+				//Код, который нужно выполнить после успешной оплаты.
+				updateStore({
+					paymentId: null,
+					paymentTocken: null,
+				})
+				navigate('/order');
+				//Удаление инициализированного виджета
+				checkout.destroy();
+			});
+
+			checkout.on('modal_close', async () => {
+				//Код, который нужно выполнить после успешной оплаты.
+				updateStore({
+					paymentId: null,
+					paymentTocken: null,
+				})
+				navigate('/order');
+				//Удаление инициализированного виджета
+				checkout.destroy();
+			});
+
+
+
 			// Render the payment form in the container with the 'payment-form' id
 			checkout.render('payment-form');
 		};
@@ -52,11 +81,6 @@ export const PaymentPage = () => {
 	}
 	}, [store.paymentTocken]);
 
-	useEffect(() => {
-		if (!store.paymentTocken) {
-			getStore();
-		}
-	}, [])
 
 	return <div id="payment-form"></div>;
 };

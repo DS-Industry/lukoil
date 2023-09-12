@@ -16,7 +16,6 @@ export const OrderPage: React.FC = () => {
 	const {
 		store: orderStore,
 		sendPayment,
-		getStore: getOrderStore,
 		updateStore: updateOrderStore,
 	} = useOrder();
 
@@ -24,7 +23,6 @@ export const OrderPage: React.FC = () => {
 		store: carWashStore,
 		pingCarWash,
 		updateStore: updateCWStore,
-		getStore: getCWStore,
 	} = useCarWash();
 
 	const { user: userStore} = useUser();
@@ -35,28 +33,6 @@ export const OrderPage: React.FC = () => {
 			setIsClicked(true);
 		}
 	};
-
-	useEffect(() => {
-		if (userStore && userStore.isLoading) {
-			getOrderStore();
-			getCWStore();
-			console.log(userStore, orderStore, carWashStore)
-		} else if (
-				!orderStore ||
-				!userStore ||
-				(userStore && !userStore.partnerCard && !userStore.phNumber)
-			) {
-				toast({
-					title: 'Кажется что-то пошло не так...',
-					description: 'Приходите позже.',
-					status: 'error',
-					duration: 9000,
-					isClosable: true,
-					position: 'top',
-				});
-				navigate('/home');
-			}
-	}, [userStore]);
 
 	useEffect(() => {
 		if (carWashStore) {
@@ -82,6 +58,7 @@ export const OrderPage: React.FC = () => {
 			}
 		}
 	}, [carWashStore]);
+
 
 	useEffect(() => {
 		if (orderStore && !orderStore.isLoading) {

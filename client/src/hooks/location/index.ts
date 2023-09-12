@@ -37,7 +37,6 @@ const useGeoLocation = () => {
 
     useEffect(() => {
         // if the browser does not support geo-location (unlikely)
-        console.log('Here')
         if (!("geolocation" in navigator)) {
             onError({
                 code: 0,

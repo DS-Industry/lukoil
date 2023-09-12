@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, {ReactNode, useEffect} from 'react';
 import api from '../../api';
 import secureLocalStorage from 'react-secure-storage';
 
@@ -16,31 +16,38 @@ interface ICarWashContext {
 	getCarWashList: () => void;
 	pingCarWash: (carWashId: number, bayNumber: number) => void;
 	updateStore: (newState: ICarWashStorePartial) => void;
-	getStore: () => void;
 }
+
+const initState: ICarWashStorePartial = {
+	carWash: null,
+	carWashes: [],
+	pingStatus: null,
+	isLoading: false,
+	program: '',
+	error: null,
+}
+
+const getInitState = () => {
+	const store: ICarWashStorePartial | any = secureLocalStorage.getItem('carWash-store');
+	return store ? store : initState;
+}
+
 
 const CarWashContext = React.createContext<ICarWashContext | null>(null);
 
 const CarWashProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-	const [store, setStore] = React.useState<ICarWashStorePartial>({
-		carWash: null,
-		carWashes: [],
-		pingStatus: null,
-		isLoading: false,
-		program: '',
-		error: null,
-	});
+	const [store, setStore] = React.useState<ICarWashStorePartial>(getInitState);
 
-	const updateStore = (newState: ICarWashStorePartial) => {
-		const state = { ...store, ...newState };
-		secureLocalStorage.setItem('carWash-store', state);
-		getStore();
-	};
 
-	const getStore = () => {
-		const store: ICarWashStorePartial | any =
-			secureLocalStorage.getItem('carWash-store');
-		setStore(store);
+	useEffect(() => {
+		secureLocalStorage.setItem('carWash-store', store);
+	}, [store]);
+
+	const updateStore = (data: ICarWashStorePartial) => {
+		setStore((prev) => ({
+			...prev,
+			...data
+		}));
 	};
 
 	const getCarWashList = async () => {
@@ -75,7 +82,6 @@ const CarWashProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 				getCarWashList,
 				pingCarWash,
 				updateStore,
-				getStore,
 			}}
 		>
 			{children}

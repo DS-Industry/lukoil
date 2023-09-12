@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import api from '../../api';
 import secureLocalStorage from 'react-secure-storage';
 import { useUser } from '../user-context';
@@ -18,37 +18,52 @@ interface IOrderContext {
 	sendOrder: () => Promise<void>;
 	updateStore: (data: IOrderStorePartial) => void;
 	sendPayment: (data: string) => void;
-	getStore: () => void;
 }
+
+const initState: IOrderStorePartial = {
+	carWashId: null,
+	bayNumber: null,
+	sum: null,
+	paymentId: null,
+	paymentTocken: null,
+	isPaid: false,
+	isLoading: false,
+	error: null,
+}
+const getInitState = () => {
+	const order: IOrderStorePartial | any = secureLocalStorage.getItem('order-store');
+	return order ? order : initState;
+}
+
 
 const OrderContext = React.createContext<IOrderContext | null>(null);
 
 const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [store, setStore] = React.useState<IOrderStorePartial>({
-		carWashId: null,
-		bayNumber: null,
-		sum: null,
-		paymentId: null,
-		paymentTocken: null,
-		isPaid: false,
-		isLoading: true,
-		error: null,
-	});
+	const [store, setStore] = React.useState<IOrderStorePartial>(getInitState);
 	const { user } = useUser();
 
+	/*
 	const updateStore = (data: IOrderStorePartial) => {
 		const state = { ...store, ...data };
 		secureLocalStorage.setItem('order-store', state);
 		getStore();
 	};
 
-	const getStore = () => {
-		const store: IOrderStorePartial | any =
-			secureLocalStorage.getItem('order-store');
-		setStore(store);
+	 */
+
+	useEffect(() => {
+		secureLocalStorage.setItem('order-store', store);
+	}, [store]);
+
+	const updateStore = (data: IOrderStorePartial) => {
+		setStore((prev) => ({
+			...prev,
+			...data
+		}));
 	};
+
 
 	const sendPayment = async (amount: string) => {
 		try {
@@ -103,7 +118,7 @@ const OrderProvider: React.FC<{ children: React.ReactNode }> = ({
 
 	return (
 		<OrderContext.Provider
-			value={{ store, sendOrder, sendPayment, updateStore, getStore }}
+			value={{ store, sendOrder, sendPayment, updateStore }}
 		>
 			{children}
 		</OrderContext.Provider>
