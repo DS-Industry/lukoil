@@ -8,6 +8,7 @@ import { ListPage } from '../../../pages/list';
 import { YandexMaps } from '../map';
 import { CarWashMainInfo } from '../../car-wash/car-wash-main-info';
 import { SelectBay } from '../../select-bay';
+import useGeoLocation from "../../../hooks/location";
 
 export const CustomYMap = () => {
 	const navigate = useNavigate();
@@ -19,6 +20,7 @@ export const CustomYMap = () => {
 	const [distance, setDistance] = useState<number>(0);
 	const [carWashMainInfo, setCarWashMainInfo] = useState<any>();
 	const [carWash, setCarWash] = useState<any>();
+
 
 	const handleCloseDrawer = () => {
 		setDrawerSwitch('');

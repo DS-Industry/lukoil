@@ -1,6 +1,7 @@
 import { Placemark } from '@pbe/react-yandex-maps/';
 import { useEffect, useState } from 'react';
 import { calculateDistance } from '../../../utill/functions';
+import useGeoLocation from "../../../hooks/location";
 
 interface ICustomPlacemark {
 	index: number | null;
@@ -45,19 +46,33 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 		size,
 		offset: [-size[0] / 2, -size[1]],
 	});
+	const defaultCords = [55.755811, 37.617617];
 	const [distance, setDistance] = useState<number>(0);
 	const balloonData =
 		'<div class="baloon-content .ymaps-2-1-79-balloon__tail .ymaps-2-1-79-balloon__layout" ><p> АМС далеко от вас </p></div>';
 
+	const location = useGeoLocation();
 	useEffect(() => {
-		const calcDistance = calculateDistance(
-			userPosition[0],
-			userPosition[1],
-			coords[0],
-			coords[1]
-		);
+		let calcDistance;
+		if (location.loaded && location.coordinates){
+			 calcDistance = calculateDistance(
+				location.coordinates[0],
+				location.coordinates[1],
+				coords[0],
+				coords[1]
+			);
+		}else {
+			 calcDistance = calculateDistance(
+				defaultCords[0],
+				defaultCords[1],
+				coords[0],
+				coords[1]
+			);
+		}
 		setDistance(calcDistance);
-	}, []);
+	}, [location]);
+
+
 
 	useEffect(() => {
 		const updatePlaceMark = () => {

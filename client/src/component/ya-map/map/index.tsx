@@ -6,13 +6,14 @@ import {
 	GeolocationControl,
 	ZoomControl,
 } from '@pbe/react-yandex-maps';
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { CustomPlacemark } from '../placemark';
 import GeoSVG from '../../../assets/icons/geo.svg';
 import ActiveGeoSVG from '../../../assets/icons/geo-2.svg';
 import { CustomAlert } from '../../alert';
 import { useCarWash } from '../../../context/carwash-context';
 import { Navbar } from '../../nav-bar';
+import useGeoLocation from "../../../hooks/location";
 
 interface IYandexMaps {
 	userPosition: Array<number>;
@@ -43,21 +44,56 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 		setUserPosition,
 	}) => {
 		const { getCarWashList, store } = useCarWash();
+		const defaultCords = [55.755811, 37.617617];
+
+		const location = useGeoLocation();
+
+		const [mapState, setMapState] = useState({
+			center: defaultCords, // Default center
+			zoom: 10,       // Default zoom level
+		});
+
 
 		useEffect(() => {
 			async function getCarWashListWithCoords() {
 				await getCarWashList();
-				navigator.geolocation.getCurrentPosition((position) => {
-					const { latitude, longitude } = position.coords;
-					setUserPosition([latitude, longitude]);
-				});
 			}
 			getCarWashListWithCoords();
 		}, []);
 
+
+
+		useEffect(() => {
+			if (location.loaded && location.coordinates) {
+				// Set the map's center based on the user's location
+				setMapState({
+					center: location.coordinates,
+					zoom: 14, // Zoom in for a closer view
+				});
+			}
+		}, [location]);
+
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.permissions.query({name:'geolocation'}).then(permissionStatus => {
+					if (permissionStatus.state === 'denied') {
+						alert('Please allow location access.');
+						window.location.href = "app-settings:location";
+					} else {
+						navigator.geolocation.getCurrentPosition((position) => {
+							const { latitude, longitude } = position.coords;
+							setUserPosition([latitude, longitude]);
+						});
+					}
+				});
+			} else {
+				alert('Geolocation is not supported in your browser.');
+			}
+		}
+
 		return (
 			<>
-				{store && store.carWashes && userPosition.length > 0 ? (
 					<Flex
 						h="85%"
 						w="100vw"
@@ -74,11 +110,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 							<Map
 								width="100%"
 								height="85vh"
-								state={{
-									center: carWashCoords ? carWashCoords : userPosition,
-									zoom: 15,
-									controls: [],
-								}}
+								state={mapState}
 								modules={[
 									'control.ZoomControl',
 									'control.FullscreenControl',
@@ -101,7 +133,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 												setCarWash={setCarWash}
 												icon={GeoSVG}
 												activeIcon={ActiveGeoSVG}
-												userPosition={userPosition}
+												userPosition={location.coordinates ? location.coordinates : [55.755811, 37.617617]}
 												getCoords={setCarWashCoords}
 												getDistance={setDistance}
 												size={[41, 41]}
@@ -115,11 +147,13 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 										);
 									} else return null;
 								})}
-								<Placemark
-									key={98928397239231}
-									options={{ preset: 'islands#redCircleDotIcon' }}
-									geometry={userPosition}
-								/>
+								{location.loaded && location.coordinates && (
+									<Placemark
+										key={98928397239231}
+										options={{ preset: 'islands#redCircleDotIcon' }}
+										geometry={location.coordinates}
+									/>
+								)}
 								<GeolocationControl options={{ float: 'right' }} />
 								<ZoomControl
 									options={{
@@ -133,21 +167,6 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 						</YMaps>
 						<Navbar openList={setDrawerSwitch} />
 					</Flex>
-				) : store && store.error ? (
-					<Flex
-						h="100vh"
-						alignItems="center"
-						alignContent="center"
-						ml="20px"
-						mr="20px"
-					>
-						<CustomAlert />
-					</Flex>
-				) : (
-					<Flex w="100vw" h="100vh" justifyContent="center" alignItems="center">
-						<Spinner h="30px" w="30px" />
-					</Flex>
-				)}
 			</>
 		);
 	}
