@@ -13,8 +13,7 @@ export const PaymentPage = () => {
 			// Initialization of the widget
 			// @ts-ignore
 			const checkout = new window.YooMoneyCheckoutWidget({
-				confirmation_token: store.paymentTocken, // Your confirmation token obtained from YooKassa
-				return_url: `https://app.lukoil.ds-mobile.ru/#/pay`,// Your completion payment page URL
+				confirmation_token: store.paymentTocken, // Your confirmation token obtained from YooKassa// Your completion payment page URL
 				// Uncomment the following block if you need to customize the widget's appearance
 				// customization: {
 				//   colors: {
