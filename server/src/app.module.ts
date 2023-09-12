@@ -31,7 +31,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         pinoHttp: {
-          autoLogging: false,
           customSuccessMessage(req, res) {
             return `${req.method} [${req.url}] || ${res.statusMessage}`;
           },
