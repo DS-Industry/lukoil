@@ -50,7 +50,7 @@ export const LoginPage: React.FC = () => {
 		<>
 			<Flex
 				h="95vh"
-				w="95vw"
+				w="100vw"
 				flexDir="column"
 				justifyContent="flex-start"
 				alignItems="center"

@@ -39,7 +39,7 @@ export const PhoneInput: React.FC<IPhoneInput> = ({ value, setValue }) => {
 				/>
 				<Input
 					autoFocus
-					pl="10px"
+					ml="10px"
 					variant="flushed"
 					type="tel"
 					placeholder="000 000 00 00"
