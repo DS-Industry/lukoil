@@ -32,6 +32,7 @@ export const PaymentPage = () => {
 
 			checkout.on('success', async () => {
 				//Код, который нужно выполнить после успешной оплаты.
+				console.log('Order start full');
 				await sendOrder();
 				navigate('/success');
 				//Удаление инициализированного виджета
