@@ -95,7 +95,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 		return (
 			<>
 					<Flex
-						h="90%"
+						h="100%"
 						w="100vw"
 						justifyContent="space-evenly"
 						alignItems="center"
