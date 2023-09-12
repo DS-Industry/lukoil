@@ -39,7 +39,7 @@ export const ListPage: React.FC<IListPage> = ({
 	}, []);
 
 	return (
-		<Box h='100vh'>
+		<Box h='95vh'>
 			<Box
 				w="100%"
 				bg="#F8F8F8"

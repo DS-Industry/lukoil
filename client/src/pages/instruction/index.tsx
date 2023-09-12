@@ -90,7 +90,7 @@ export const InstructionPage: React.FC = () => {
 				{instructionList.map((info: string, index: number) => {
 					return <InstructionList key={index} info={info} index={index} />;
 				})}
-				<Box pl="13px" pr="13px" w="100%">
+				<Box pl="13px" pr="13px" w="100%" pb="48px">
 					<OperButton
 						isLoading={isClicked}
 						title="Искать автомойку"

@@ -90,7 +90,7 @@ export const OrderPage: React.FC = () => {
 			boxSizing="border-box"
 			flexDirection="column"
 			justifyContent="space-between"
-			h="95vh"
+			h="85vh"
 			w="100vw"
 			p="28px"
 			pb="0"
