@@ -48,7 +48,6 @@ export const CustomYMap = () => {
 				key={100}
 				isOpen={drawerSwitch === 'list'}
 				onClose={handleCloseDrawer}
-				size="full"
 				topBR="0"
 				pl="0"
 				pr="0"
