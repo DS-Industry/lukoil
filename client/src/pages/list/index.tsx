@@ -23,12 +23,14 @@ export const ListPage: React.FC<IListPage> = ({
 	const [term, setTerm] = useState<string>('');
 	const { store } = useCarWash();
 	const [carWashList, setCarWashList] = useState<any>();
-	const [defaultCoords, setDefaultCoords ] = useState<number[]>([55.755811, 37.617617]);
 
+	const defaultCoords = [55.755811, 37.617617];
+	
 	useEffect(() => {
 		const list: Array<any> = [];
 		store.carWashes.forEach((carWashWithCoords: any, index: number) => {
 			return carWashWithCoords.carwashes.map((carWash: any) => {
+				console.log(carWash);
 				return list.push({
 					id: index,
 					carWash,
@@ -40,7 +42,7 @@ export const ListPage: React.FC<IListPage> = ({
 	}, []);
 
 	return (
-		<Box h='100vh' pt="10%">
+		<Box h='95vh'>
 			<Box
 				w="100%"
 				bg="#F8F8F8"
@@ -68,6 +70,7 @@ export const ListPage: React.FC<IListPage> = ({
 			{carWashList &&
 				carWashList
 					.filter((carWashWithCoords: any) => {
+						console.log(carWashWithCoords);
 						return (
 							carWashWithCoords.carWash.name.includes(term) ||
 							carWashWithCoords.carWash.address.includes(term)
