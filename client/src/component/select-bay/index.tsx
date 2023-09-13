@@ -58,13 +58,15 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 			<Box mt="25px" mb="20px" w="100%" display="flex" pl="42.5vw">
 				<Image src={CenterDot} />
 			</Box>
-			<OperButton
-				title="Далее"
-				switchCarWashType="bay"
-				disabled={!value ? true : false}
-				onClick={onClick}
-				value={value}
-			/>
+			<Box w='100%'>
+				<OperButton
+					title="Далее"
+					switchCarWashType="bay"
+					disabled={!value ? true : false}
+					onClick={onClick}
+					value={value}
+				/>
+			</Box>
 		</Box>
 	);
 };

@@ -73,6 +73,7 @@ export const CarWashMap: React.FC<ICarWashMap> = ({
 						lineHeight="20px"
 						color="colors.BLACK"
 						fontWeight="800"
+						maxW="80%"
 					>
 						{title}
 					</Text>

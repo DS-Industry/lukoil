@@ -40,7 +40,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 			closeOnOverlayClick={isCloseOnOverlayClick}
 		>
 			<DrawerOverlay />
-			<DrawerContent pt={isList ? "0px" : "0px"} borderTopRadius={topBR ? topBR : '16px'}>
+			<DrawerContent pb="62px" pt={isList ? "0px" : "0px"} borderTopRadius={topBR ? topBR : '16px'}>
 				{isList && (
 					<>
 						<DrawerCloseButton/>

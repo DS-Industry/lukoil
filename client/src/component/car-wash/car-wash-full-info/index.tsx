@@ -94,7 +94,7 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 							})}
 					</Flex>
 				</Box>
-				<Box w="100%" display="flex" justifyContent="center">
+				<Box w="100%" display="flex" justifyContent="center" pb="16px">
 					<TagButton
 						distance={distance}
 						switchCarWashType="bay"
