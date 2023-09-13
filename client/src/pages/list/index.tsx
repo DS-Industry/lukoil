@@ -44,7 +44,7 @@ export const ListPage: React.FC<IListPage> = ({
 	}, []);
 
 	return (
-		<Box h='75vh'>
+		<Box h='70vh'>
 			<Box
 				w="100%"
 				bg="#F8F8F8"
