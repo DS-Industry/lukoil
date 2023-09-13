@@ -11,6 +11,7 @@ interface ICarWash {
 	index: number;
 	setCarWash: any;
 	setCarWashIdList: any;
+	setDistance: any;
 }
 
 export const CarWash: React.FC<ICarWash> = ({
@@ -24,9 +25,11 @@ export const CarWash: React.FC<ICarWash> = ({
 	setCarWash,
 	setCarWashIdList,
 	distance,
+	setDistance,
 }) => {
 	const handleClick = () => {
 		openFullInfo('full-info');
+		setDistance(distance)
 		setCarWashCoords(coords);
 		setCarWashIdList(index);
 		setCarWash(carWash);

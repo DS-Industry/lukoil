@@ -11,6 +11,7 @@ interface IListPage {
 	setCarWash: any;
 	setCarWashIdList: any;
 	userPosition: number[];
+	setDistance: any;
 }
 
 export const ListPage: React.FC<IListPage> = ({
@@ -19,6 +20,7 @@ export const ListPage: React.FC<IListPage> = ({
 	setCarWash,
 	setCarWashIdList,
 	userPosition,
+	setDistance
 }) => {
 	const [term, setTerm] = useState<string>('');
 	const { store } = useCarWash();
@@ -83,8 +85,10 @@ export const ListPage: React.FC<IListPage> = ({
 							filteredCarWash.coords[0],
 							filteredCarWash.coords[1]
 						);
+
 						return (
 							<CarWash
+								setDistance={setDistance}
 								distance={distance}
 								setCarWashIdList={setCarWashIdList}
 								setCarWash={setCarWash}

@@ -60,6 +60,7 @@ export const CustomYMap = () => {
 					setCarWashCoords={setCarWashCoords}
 					setCarWash={setCarWash}
 					setCarWashIdList={setCarWashIdList}
+					setDistance={setDistance}
 				/>
 			</CustomDrawer>
 
