@@ -12,17 +12,18 @@ interface IOperButton {
 	isOper?: boolean;
 	switchCarWashType?: string;
 	isLoading?: boolean;
+	isOrder?: boolean;
 }
 
 export const OperButton: React.FC<IOperButton> = ({
 	isSum = false,
 	title,
 	onClick,
-	disabled,
+	disabled = false,
 	value,
 	isOper = true,
 	switchCarWashType,
-	isLoading=false
+	isLoading=false,
 }) => {
 	const { updateStore } = useOrder();
 	const { store: carWashStore } = useCarWash();
@@ -56,10 +57,10 @@ export const OperButton: React.FC<IOperButton> = ({
 	return (
 		<Button
 			isLoading={isLoading}
-			bg={disabled ? '#D2D3D9': 'colors.PRIMARY_RED'}
+			bgColor={disabled ? '#D2D3D9': 'colors.PRIMARY_RED'}
 			w="100%"
 			h="46px"
-			mb={switchCarWashType === 'bay' || switchCarWashType === 'sum' ? "16px" :"16px"}
+			mb="16px"
 			borderRadius="4px"
 			color="colors.WHITE"
 			onClick={handleClick}
