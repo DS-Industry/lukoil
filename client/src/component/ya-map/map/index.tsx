@@ -143,6 +143,7 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 												placemarkId={carWashIdList >= 0 ? carWashIdList : -1}
 												setDrawerSwitch={setDrawerSwitch}
 												placeMarkSwitch={drawerSwitch}
+												setMapState={setMapState}
 											/>
 										);
 									} else return null;

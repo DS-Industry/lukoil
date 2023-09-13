@@ -5,7 +5,7 @@ import { Header } from '../../component/header';
 export const HomePage = () => {
 	return (
 		<>
-			<Flex direction="column" className="App" h="90vh">
+			<Flex direction="column" className="App" h="87vh">
 				<Header label="Автомойки" />
 				<CustomYMap />
 			</Flex>

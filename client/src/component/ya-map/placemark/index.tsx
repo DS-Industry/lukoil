@@ -21,6 +21,7 @@ interface ICustomPlacemark {
 	getDistance: any;
 	setCarWash: any;
 	setCarWashId: any;
+	setMapState: any,
 }
 
 export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
@@ -40,6 +41,7 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 	getCoords,
 	setCarWash,
 	setCarWashId,
+	setMapState
 }) => {
 	const [placeMarkParams, setPlaceMarkParams] = useState({
 		icon,
@@ -136,6 +138,10 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 				if (carWashes.length < 2) {
 					setCarWash(carWashes[0]);
 				}
+				setMapState({
+					center: coords,
+					zoom: 14, // Zoom in for a closer view
+				})
 				getDistance(distance);
 				getCoords(coords);
 				setCarWashId(index);
