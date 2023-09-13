@@ -21,7 +21,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 				className='select-bay'
 				pl="37.5vw"
 				pr="35vw"
-				mt="20px"
+				mt="10px"
 				flexShrink="none"
 				flexGrow="none"
 				overflowY="scroll"
@@ -55,7 +55,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 					);
 				})}
 			</Flex>
-			<Box mt="25px" mb="20px" w="100%" display="flex" pl="42.5vw">
+			<Box mt="15px" mb="10px" w="100%" display="flex" pl="42.5vw">
 				<Image src={CenterDot} />
 			</Box>
 			<Box w='100%'>

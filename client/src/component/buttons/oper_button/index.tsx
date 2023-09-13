@@ -1,6 +1,5 @@
 import { Button } from '@chakra-ui/react';
 import { useOrder } from '../../../context/order-context';
-import { useUser } from '../../../context/user-context';
 import { useCarWash } from '../../../context/carwash-context';
 
 interface IOperButton {
@@ -65,6 +64,7 @@ export const OperButton: React.FC<IOperButton> = ({
 			color="colors.WHITE"
 			onClick={handleClick}
 			isDisabled={!isOper ? false : value ? false : disabled}
+			_hover={disabled ? { backgroundColor: '#D2D3D9'} : { backgroundColor: 'colors.PRIMARY_RED'}}
 		>
 			{title}
 		</Button>

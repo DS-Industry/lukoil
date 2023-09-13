@@ -18,6 +18,7 @@ export const VerificationPage = () => {
 	const navigate = useNavigate();
 	const { user, signIn,  sendPhNumber, updateStore } = useUser();
 	const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+	const [timer,setTimer] = useState<number>(50);
 	const [code, setCode] = useState<IVerificationCode>({
 		firstN: '',
 		secondN: '',
@@ -40,6 +41,7 @@ export const VerificationPage = () => {
 	}, [isAuth])
 	const handleClick = () => {
 			setIsButtonDisabled(true);
+			setTimer(50);
 			sendPhNumber(phone);
 	};
 
@@ -54,7 +56,7 @@ export const VerificationPage = () => {
 
 	// disabled button timer use effect
 	useEffect(() => {
-		if (error && error.code != 404 && error.code != 201) {
+		if (error && error.code !== 404 && error.code !== 201) {
 			toast({
 				containerStyle: {
 					marginTop: 'none',
@@ -74,12 +76,18 @@ export const VerificationPage = () => {
 	},[isLoading])
 
 	useEffect(() => {
+		let intervalID: any;
 		if (isButtonDisabled) {
-			setTimeout(() => {
+			intervalID = setInterval(() => {
+				setTimer(prevValue => prevValue-1);
+			}, 1000);
+			if (timer === 0) {
 				setIsButtonDisabled(false);
-			}, 50000);
+				clearInterval(intervalID);
+			}
 		}
-	}, [isButtonDisabled]);
+		return () => clearInterval(intervalID);
+	}, [timer]);
 
 	return (
 		<Box h="85vh">
@@ -110,7 +118,7 @@ export const VerificationPage = () => {
 					<VerificationList code={code} setCode={setCode} />
 
 					<Text fontSize="15px" color="#C7C7CB" fontWeight="500" mt="30px">
-						Если код не придет, можно получить новый через 50 сек.
+						Если код не придет, можно получить новый через {timer} сек.
 					</Text>
 				</Box>
 				<Box w="100%" pl="12px" pr="12px">

@@ -100,6 +100,7 @@ export const CustomYMap = () => {
 					<CustomDrawer
 						isOpen={drawerSwitch === 'bay'}
 						onClose={handleCloseDrawer}
+						isBay={true}
 					>
 						<SelectBay carWash={carWash} onClick={setDrawerSwitch} />
 					</CustomDrawer>

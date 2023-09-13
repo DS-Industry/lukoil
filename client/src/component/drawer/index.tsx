@@ -16,6 +16,7 @@ interface ICustomDrawer {
 	topBR?: string;
 	size?: string;
 	isList?: boolean;
+	isBay?: boolean;
 	isCloseOnOverlayClick?: boolean;
 	onClose: () => void;
 }
@@ -30,6 +31,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 	size,
 	isList = false,
 	isCloseOnOverlayClick = true,
+	isBay=false,
 }) => {
 	return (
 		<Drawer
@@ -48,7 +50,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 						
 					</>
 				)}
-				<DrawerBody pl={pl ? pl : '16px'} pr={pr ? pr : '16px'} pt={isList ? "0px" : "20px"}>
+				<DrawerBody pl={pl ? pl : '16px'} pr={pr ? pr : '16px'} pt={isList ? "0px" : isBay ? "5px" : "20px"}>
 					{children}
 				</DrawerBody>
 			</DrawerContent>

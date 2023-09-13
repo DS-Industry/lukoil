@@ -18,7 +18,7 @@ export const CarWashMainInfo: React.FC<ICarWashMainInfo> = ({
 	carWashMainInfo,
 }) => {
 	return (
-		<Flex flexDirection="column">
+		<Flex flexDirection="column" h="80%">
 			<Box w="100%" mb={carWashMainInfo.carWashes.length > 1 ? "24px": "0px"}>
 				<CarWashMap
 					isDisabled={false}
