@@ -89,12 +89,20 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 						size: activeSize,
 						offset: [-activeSize[0] / 2, -activeSize[1]],
 					});
+					setMapState({
+						center: coords,
+						zoom: 14, // Zoom in for a closer view
+					})
 				} else {
 					setPlaceMarkParams({
 						icon,
 						size,
 						offset: [-size[0] / 2, -size[1]],
 					});
+					setMapState({
+						center: location.coordinates,
+						zoom: 14, // Zoom in for a closer view
+					})
 				}
 			}
 		};
@@ -138,10 +146,6 @@ export const CustomPlacemark: React.FC<ICustomPlacemark> = ({
 				if (carWashes.length < 2) {
 					setCarWash(carWashes[0]);
 				}
-				setMapState({
-					center: coords,
-					zoom: 14, // Zoom in for a closer view
-				})
 				getDistance(distance);
 				getCoords(coords);
 				setCarWashId(index);

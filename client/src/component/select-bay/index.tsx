@@ -18,6 +18,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 				Выберите номер поста
 			</Text>
 			<Flex
+				className='select-bay'
 				pl="37.5vw"
 				pr="35vw"
 				mt="20px"
