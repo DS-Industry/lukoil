@@ -25,7 +25,7 @@ export const ListPage: React.FC<IListPage> = ({
 	const [carWashList, setCarWashList] = useState<any>();
 
 	const defaultCoords = [55.755811, 37.617617];
-	
+
 	useEffect(() => {
 		const list: Array<any> = [];
 		store.carWashes.forEach((carWashWithCoords: any, index: number) => {
@@ -42,7 +42,7 @@ export const ListPage: React.FC<IListPage> = ({
 	}, []);
 
 	return (
-		<Box h='95vh'>
+		<Box h='80vh'>
 			<Box
 				w="100%"
 				bg="#F8F8F8"

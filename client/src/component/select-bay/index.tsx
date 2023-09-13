@@ -13,7 +13,7 @@ export const SelectBay: React.FC<ISelectBay> = ({ carWash, onClick }) => {
 	const [isClick, setIsClick] = useState<number>(-1);
 
 	return (
-		<Box textAlign="center" w="100%">
+		<Box textAlign="center" w="100%" className='select-bay'>
 			<Text fontSize="20px" fontWeight="700">
 				Выберите номер поста
 			</Text>

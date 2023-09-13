@@ -165,7 +165,10 @@ export const YandexMaps: React.FC<IYandexMaps> = React.memo(
 								/>
 							</Map>
 						</YMaps>
-						<Navbar openList={setDrawerSwitch} />
+						{
+							store.carWashes && <Navbar openList={setDrawerSwitch} />
+						}
+						
 					</Flex>
 			</>
 		);
