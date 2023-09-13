@@ -9,6 +9,10 @@ body {
 	
 }
 
+.select-bay::-webkit-scrollbar{
+    display: none;
+  }
+
 .select-bay {
 	overflow: auto;
 	-ms-overflow-style: none;
