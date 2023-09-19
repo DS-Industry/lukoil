@@ -26,7 +26,8 @@ export const PaymentPage = () => {
 				// },
 
 				customization: {
-					modal: true
+					modal: true,
+					payment_methods: ['bank_card']
 				},
 				//@ts-ignore
 				error_callback: function (error) {
