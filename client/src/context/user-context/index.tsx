@@ -14,13 +14,14 @@ interface IUserPartial {
 	isLoading?: boolean;
 	error?: IUserError | null;
 	isAuth? : boolean | null;
-}
+}``
 
 interface IUserContext {
 	user: IUserPartial;
 	updateStore: (data: IUserPartial) => void;
 	signIn: (verificationCode: string, phone: string, partnerCard: string) => void;
 	sendPhNumber: (phNumber: string) => void;
+	updatePartnerCard: (partnerCard?: string, phone?: string | null) => void;
 	getMe: () => void;
 }
 
@@ -116,6 +117,7 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 			const loginResponse = await api.post('/auth/login', {
 				phone: formattedPhone,
 				otp,
+				partnerCard
 			});
 
 			updateStore({
@@ -182,6 +184,33 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 			}
 		}
 	};
+
+	const updatePartnerCard = async (partnerCard?: string, phone?: string | null) => {
+		console.log(`UPDATING CARDINFO`);
+		console.log(`${partnerCard} --> ${phone}`);
+		if (!partnerCard || !phone) {
+			const customError: IUserError = { code: 500, message: 'Ошибка соединения с сервером' };
+			updateStore({ isLoading: false, error: customError });
+		}
+		try {
+			updateStore({ isLoading: true });
+			const response = await api.post('/user/update', {
+				phone: phone,
+				partnerCard: partnerCard
+			},
+			{
+				headers: {
+					Authorization: `Bearer ${user && user.token ? user.token : null}`,
+				}
+			});
+
+			updateStore({ isLoading: true, partnerCard: response.data.partnerCard });
+		}catch (error: any) {
+			console.log(JSON.stringify(error));
+			const customError: IUserError = { code: error.response?.data?.statusCode || 500, message: 'Ошибка соединения с сервером' };
+			updateStore({ isLoading: false, error: customError });
+		}
+	}
 	return (
 		<UserContext.Provider
 			value={{
@@ -189,7 +218,8 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 				updateStore,
 				signIn,
 				sendPhNumber,
-				getMe
+				getMe,
+				updatePartnerCard
 			}}
 		>
 			{children}

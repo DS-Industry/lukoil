@@ -18,9 +18,9 @@ export class AuthController {
   }
   @Throttle(5, 60)
   @Post('login')
-  async login(@Body() body: LoginReqDto) {
-    const { phone, otp } = body;
-    return await this.authService.singIn(phone, otp);
+  async login(@Body() body: RegistrationReqDto) {
+    const { phone, otp, partnerCard } = body;
+    return await this.authService.singIn(phone, otp, partnerCard);
   }
 
   @Throttle(1, 60)

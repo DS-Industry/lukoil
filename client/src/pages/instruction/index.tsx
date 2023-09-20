@@ -13,7 +13,7 @@ export const InstructionPage: React.FC = () => {
 
 	const [ isClicked, setIsClicked ] = useState<boolean>(false)
 	const toast = useToast();
-	const { getMe, user, updateStore } = useUser();
+	const { getMe, user, updateStore, updatePartnerCard } = useUser();
 	const [searchParams] = useSearchParams();
 	const cardId: string | null = searchParams.get('subid');
 
@@ -23,12 +23,18 @@ export const InstructionPage: React.FC = () => {
 	const navigate = useNavigate();
 
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		const destination = user && !user.isAuth ? '/login' : '/home';
 		let correctCardId: string | null = null;
 		if (typeof cardId === 'string') {
 			correctCardId = cardId.includes('#') ? cardId.replace('#', '') : cardId;
 		}
+
+		if(destination === '/home' && correctCardId && correctCardId !== user.partnerCard){
+			const phone: string | null = user.phNumber ? user.phNumber : '';
+			await updatePartnerCard(correctCardId, phone);
+		}
+
 		navigate(destination, { state: { partnerCard: correctCardId } });
 	};
 

@@ -24,7 +24,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     }
 
     const res: any = this.getErrorResponse(status, request, message);
-
+    console.log(exception);
     response.status(status).json(res);
   }
 

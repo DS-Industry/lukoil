@@ -16,7 +16,7 @@ interface IVerificationCode {
 export const VerificationPage = () => {
 	const toast = useToast();
 	const navigate = useNavigate();
-	const { user, signIn,  sendPhNumber, updateStore } = useUser();
+	const { user, signIn,  sendPhNumber, updateStore, updatePartnerCard } = useUser();
 	const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 	const [timer,setTimer] = useState<number>(50);
 	const [code, setCode] = useState<IVerificationCode>({
@@ -32,11 +32,11 @@ export const VerificationPage = () => {
 
 	// send OTP code to phone number
 
-	const { isLoading, error, isAuth } = user;
+	const { isLoading, error, isAuth, partnerCard: currentPartnerCard } = user;
 
 	useEffect(() => {
 		if (isAuth && !isLoading){
-			navigate('/home')
+				navigate('/home')
 		}
 	}, [isAuth])
 	const handleClick = () => {

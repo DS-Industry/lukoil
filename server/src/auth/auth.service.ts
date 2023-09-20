@@ -61,7 +61,7 @@ export class AuthService {
     );
   }
 
-  public async singIn(phone: string, otp: string) {
+  public async singIn(phone: string, otp: string, partnerCard: string) {
     const isVerified = await this.verifyOtp(phone, otp);
     if (!isVerified) {
       throw new UnauthorizedException('Invalid OTP');
@@ -73,8 +73,14 @@ export class AuthService {
 
     const accessToken = this.signAccessToken(phone);
 
+    const updUser = await this.userService.updatePartnerCard(partnerCard, phone);
+
+    if (!updUser){
+      throw new UnprocessableEntityException('Unable to login')
+    }
+
     return {
-      user,
+      user: updUser,
       accessToken,
     };
   }

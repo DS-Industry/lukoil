@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {BadRequestException, Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
@@ -28,4 +28,16 @@ export class UserService {
       where: { phone: phone },
     });
   }
+
+  public async updatePartnerCard(partnerCard: string, phone: string): Promise<any> {
+     await this.userRepository.createQueryBuilder()
+        .update(User)
+        .set({ partnerCard: partnerCard })
+        .where('phone = :phone', { phone: phone })
+        .execute();
+
+
+     return await this.userRepository.findOne({ where: { phone }})
+  }
+
 }
