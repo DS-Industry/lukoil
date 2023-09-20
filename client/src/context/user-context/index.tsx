@@ -14,7 +14,7 @@ interface IUserPartial {
 	isLoading?: boolean;
 	error?: IUserError | null;
 	isAuth? : boolean | null;
-}``
+}
 
 interface IUserContext {
 	user: IUserPartial;
@@ -186,8 +186,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const updatePartnerCard = async (partnerCard?: string, phone?: string | null) => {
-		console.log(`UPDATING CARDINFO`);
-		console.log(`${partnerCard} --> ${phone}`);
 		if (!partnerCard || !phone) {
 			const customError: IUserError = { code: 500, message: 'Ошибка соединения с сервером' };
 			updateStore({ isLoading: false, error: customError });
@@ -206,7 +204,6 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
 			updateStore({ isLoading: true, partnerCard: response.data.partnerCard });
 		}catch (error: any) {
-			console.log(JSON.stringify(error));
 			const customError: IUserError = { code: error.response?.data?.statusCode || 500, message: 'Ошибка соединения с сервером' };
 			updateStore({ isLoading: false, error: customError });
 		}
