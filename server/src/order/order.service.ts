@@ -46,6 +46,8 @@ export class OrderService {
         Number(bay.id),
         createdOrder.orderSum,
       );
+
+      await this.updateOrderStatus(createdOrder.id, OrderStatusEnum.COMPLETED);
       return sentOrder;
     } catch (e) {
       await this.updateOrderStatus(createdOrder.id, OrderStatusEnum.CANCELED);
