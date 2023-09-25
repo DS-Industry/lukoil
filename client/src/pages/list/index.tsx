@@ -32,11 +32,17 @@ export const ListPage: React.FC<IListPage> = ({
 		const list: Array<any> = [];
 		store.carWashes.forEach((carWashWithCoords: any, index: number) => {
 			return carWashWithCoords.carwashes.map((carWash: any) => {
-				console.log(carWash);
+				const distance = calculateDistance(
+					userPosition.length > 1 ? userPosition[0] : defaultCoords[0],
+					userPosition.length > 1 ? userPosition[1] : defaultCoords[1],
+					carWashWithCoords.lat,
+					carWashWithCoords.lon,
+				);
 				return list.push({
 					id: index,
 					carWash,
 					coords: [carWashWithCoords.lat, carWashWithCoords.lon],
+					distance,
 				});
 			});
 		});
@@ -72,24 +78,16 @@ export const ListPage: React.FC<IListPage> = ({
 			{carWashList &&
 				carWashList
 					.filter((carWashWithCoords: any) => {
-						console.log(carWashWithCoords);
 						return (
 							carWashWithCoords.carWash.name.includes(term) ||
 							carWashWithCoords.carWash.address.includes(term)
 						);
-					})
+					}).sort((a : any, b: any) => a.distance > b.distance ? 1 : -1)
 					.map((filteredCarWash: any, index: number) => {
-						const distance = calculateDistance(
-							userPosition.length > 1 ? userPosition[0] : defaultCoords[0],
-							userPosition.length > 1 ? userPosition[1] : defaultCoords[1],
-							filteredCarWash.coords[0],
-							filteredCarWash.coords[1]
-						);
-
 						return (
 							<CarWash
 								setDistance={setDistance}
-								distance={distance}
+								distance={filteredCarWash.distance}
 								setCarWashIdList={setCarWashIdList}
 								setCarWash={setCarWash}
 								carWash={filteredCarWash.carWash}

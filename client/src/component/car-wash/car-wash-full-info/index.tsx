@@ -25,7 +25,6 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 				distance={distance}
 			/>
 			<Flex
-				pt="52px"
 				h="100%"
 				flexDirection="column"
 				justifyContent="space-between"
@@ -52,6 +51,20 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 						</Box>
 					</>
 				) : (
+				<Flex flexDir='column' justifyContent='space-around' h='100%'>
+					<Box>
+						<Text lineHeight="20px" fontSize="12px" color="colors.DARK_GRAY"  pb='5px'>
+							Стоимость минуты
+						</Text>
+						<TagInfo
+							label={`От ${carWash.price[0].cost} ₽`}
+							bgColor="colors.PRIMARY_RED"
+							color="colors.WHITE"
+							fontSize="14px"
+							height="20px"
+							fontWeight='600'
+										/>
+					</Box>
 					<Box>
 						<Text lineHeight="20px" fontSize="12px" color="colors.DARK_GRAY">
 							Программы
@@ -72,6 +85,7 @@ export const CarWashFullInfo: React.FC<ICarWash> = ({
 							})}
 						</Flex>
 					</Box>
+				</Flex>
 				)}
 				<Box mb="15px">
 					<Text lineHeight="20px" fontSize="12px" color="colors.DARK_GRAY">
