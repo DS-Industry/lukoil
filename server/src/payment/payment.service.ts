@@ -3,16 +3,12 @@ import { YooCheckout, ICreatePayment } from '@a2seven/yoo-checkout';
 import { v4 as uuidv4 } from 'uuid';
 import { CreatePaymentDto } from './dto/req/create-payment-dto';
 import { EnvironmentService } from '../environment/environment.service';
-import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class PaymentService {
   private checkout;
   private readonly logger = new Logger();
-  constructor(
-    env: EnvironmentService,
-    private readonly userService: UserService,
-  ) {
+  constructor(env: EnvironmentService) {
     this.checkout = new YooCheckout({
       shopId: '168905',
       secretKey: env.getPaymentApiKey(),
@@ -20,8 +16,6 @@ export class PaymentService {
   }
 
   async createPayment(data: CreatePaymentDto) {
-    const user = await this.userService.findOneByPhone(data.phone);
-
     const paymentInfo: ICreatePayment = {
       amount: {
         value: String(data.amount),
@@ -45,7 +39,7 @@ export class PaymentService {
         type: 'embedded',
       },
       capture: true,
-      merchant_customer_id: String(user.id),
+      merchant_customer_id: data.id,
     };
 
     try {

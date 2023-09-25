@@ -11,7 +11,12 @@ export class PaymentController {
   @Post('create')
   async create(@Req() req: any, @Body() body: Omit<CreatePaymentDto, 'phone'>) {
     const { user } = req;
-    const updatedBody: CreatePaymentDto = { ...body, phone: user.phone };
+    console.log(user);
+    const updatedBody: CreatePaymentDto = {
+      ...body,
+      phone: user.phone,
+      id: user.id,
+    };
     return await this.paymentService.createPayment(updatedBody);
   }
 }
