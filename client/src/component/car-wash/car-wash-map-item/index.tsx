@@ -24,6 +24,7 @@ interface ICarWashMap {
 	setSwitch?: any;
 	setCarWashDrawer?: any;
 	IsOrder?: boolean;
+	isMain?: boolean;
 }
 
 export const CarWashMap: React.FC<ICarWashMap> = ({
@@ -36,6 +37,7 @@ export const CarWashMap: React.FC<ICarWashMap> = ({
 	setCarWashDrawer,
 	isDisabled,
 	IsOrder = false,
+	isMain = false
 }) => {
 	const navigate = useNavigate();
 	const { updateStore } = useCarWash();
@@ -64,7 +66,6 @@ export const CarWashMap: React.FC<ICarWashMap> = ({
 		<Flex
 			justifyContent="flex-start"
 			flexDirection="column"
-			onClick={handleClick}
 		>
 			{IsOrder ? (
 				<HStack>
@@ -124,6 +125,22 @@ export const CarWashMap: React.FC<ICarWashMap> = ({
 					: ''}
 				ДО АМС
 			</Text>
+			{ isMain ? 
+				(
+					<Text
+						mt='10px'
+						bgColor='colors.WHITE_GRAY' 
+						color='colors.DARK'
+						p='3px'
+						w='45%'
+						textAlign='center'
+						borderRadius='8px'
+						fontWeight='700'
+						fontSize='12px'
+						onClick={handleClick}>Подробнее об услугах</Text>
+				) 
+				: ''
+			}
 		</Flex>
 	);
 };

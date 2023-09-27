@@ -11,7 +11,6 @@ export class PaymentController {
   @Post('create')
   async create(@Req() req: any, @Body() body: Omit<CreatePaymentDto, 'phone'>) {
     const { user } = req;
-    console.log(user);
     const updatedBody: CreatePaymentDto = {
       ...body,
       phone: user.phone,

@@ -30,6 +30,7 @@ export const CarWashMainInfo: React.FC<ICarWashMainInfo> = ({
 					distance={distance}
 					getCarWash={setCarWash}
 					setCarWashDrawer={setDrawerSwitch}
+					isMain={true}
 				/>
 			</Box>
 
