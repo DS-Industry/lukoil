@@ -1,4 +1,4 @@
-import { Box, Flex, useToast } from '@chakra-ui/react';
+import { Box, Flex, useToast, Text } from '@chakra-ui/react';
 import { Header } from '../../component/header';
 import { instructionList } from '../../utill/variabels';
 import { OperButton } from '../../component/buttons/oper_button';
@@ -9,17 +9,19 @@ import { MainText } from '../../component/hard-data/main-text';
 import { useUser } from '../../context/user-context';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { CustomDrawer } from '../../component/drawer';
 export const InstructionPage: React.FC = () => {
 
 	const [ isClicked, setIsClicked ] = useState<boolean>(false)
 	const toast = useToast();
 	const { getMe, user, updateStore, updatePartnerCard } = useUser();
 	const [searchParams] = useSearchParams();
-	const cardId: string | null = searchParams.get('subid');
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 
+
+	const cardId: string | null = searchParams.get('subid');
 	// take loyalty from query params and do nothing with it.
 	const loyaltyId: string | null = searchParams.get('loyalty');
-
 	const navigate = useNavigate();
 
 
@@ -37,6 +39,13 @@ export const InstructionPage: React.FC = () => {
 
 		navigate(destination, { state: { partnerCard: correctCardId } });
 	};
+
+	const handleClose = () => {
+		setIsOpen(false);
+	}
+	const handleInfoClick = () => {
+		setIsOpen(true);
+	}
 
 
 
@@ -96,7 +105,7 @@ export const InstructionPage: React.FC = () => {
 				{instructionList.map((info: string, index: number) => {
 					return <InstructionList key={index} info={info} index={index} />;
 				})}
-				<Box pl="13px" pr="13px" w="100%" pb="48px">
+				<Box pl="13px" pr="13px" w="100%" >
 					<OperButton
 						isLoading={isClicked}
 						title="Искать автомойку"
@@ -105,7 +114,18 @@ export const InstructionPage: React.FC = () => {
 						isOper={false}
 					/>
 				</Box>
+				<Text 
+					w='100%'
+					pb="48px" 
+					color='colors.PRIMARY_RED' 
+					textAlign='center'
+					onClick={handleInfoClick}
+					>Подробнее об акции</Text>
 			</Flex>
+				<CustomDrawer isOpen={isOpen} isList={true} onClose={handleClose}>
+					<Text>Lorem ipsum</Text>
+				</CustomDrawer>
 		</Flex>
+		
 	);
 };
