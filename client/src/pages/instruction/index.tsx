@@ -10,6 +10,7 @@ import { useUser } from '../../context/user-context';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CustomDrawer } from '../../component/drawer';
+import { PromoConditions } from '../../component/hard-data/condition-promotion';
 export const InstructionPage: React.FC = () => {
 
 	const [ isClicked, setIsClicked ] = useState<boolean>(false)
@@ -122,8 +123,8 @@ export const InstructionPage: React.FC = () => {
 					onClick={handleInfoClick}
 					>Подробнее об акции</Text>
 			</Flex>
-				<CustomDrawer isOpen={isOpen} isList={true} onClose={handleClose}>
-					<Text>Lorem ipsum</Text>
+				<CustomDrawer pl='1px' pr='1px' isOpen={isOpen} isList={true} onClose={handleClose}>
+					<PromoConditions />
 				</CustomDrawer>
 		</Flex>
 		

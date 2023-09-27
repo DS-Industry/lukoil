@@ -23,6 +23,11 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
+.promo {
+	border-width: 1px;
+	border-color: black;
+	color: black;
+}
 
 .baloon-content {
 	background-color: #D2233C;
