@@ -228,7 +228,7 @@ export const PromoConditions: React.FC = () => {
 <Text align="center">
     Перечень Акционных торговых точек:
 </Text>
-<table style={{ fontSize: "0.7em", fontWeight: 600 }} cellSpacing="0" cellPadding="2">
+<table style={{ fontSize: "0.5em", fontWeight: 600 }} cellSpacing="0" cellPadding="2">
     <tbody style={{ borderWidth: "1px"}} className="promo">
 <tr className="promo">
             <td className="promo" valign="top" align="center">
