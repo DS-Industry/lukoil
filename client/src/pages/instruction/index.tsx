@@ -123,7 +123,7 @@ export const InstructionPage: React.FC = () => {
 					onClick={handleInfoClick}
 					>Подробнее об акции</Text>
 			</Flex>
-				<CustomDrawer pl='1px' pr='1px' isOpen={isOpen} isList={true} onClose={handleClose}>
+				<CustomDrawer pl='1px' pr='1px' isOpen={isOpen} isInstruction={true} isList={true} onClose={handleClose}>
 					<PromoConditions />
 				</CustomDrawer>
 		</Flex>

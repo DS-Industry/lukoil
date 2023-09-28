@@ -18,6 +18,7 @@ interface ICustomDrawer {
 	isList?: boolean;
 	isBay?: boolean;
 	isCloseOnOverlayClick?: boolean;
+	isInstruction?: boolean;
 	onClose: () => void;
 }
 
@@ -31,6 +32,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 	size,
 	isList = false,
 	isCloseOnOverlayClick = true,
+	isInstruction = false,
 	isBay=false,
 }) => {
 	return (
@@ -42,7 +44,7 @@ export const CustomDrawer: React.FC<ICustomDrawer> = ({
 			closeOnOverlayClick={isCloseOnOverlayClick}
 		>
 			<DrawerOverlay />
-			<DrawerContent pb="62px" pt={isList ? "0px" : "0px"} borderTopRadius={topBR ? topBR : '16px'}>
+			<DrawerContent h={isInstruction ? '95vh' : 'auto'} pb="62px" pt={isList ? "0px" : "0px"} borderTopRadius={topBR ? topBR : '16px'}>
 				{isList && (
 					<>
 						<DrawerCloseButton/>
