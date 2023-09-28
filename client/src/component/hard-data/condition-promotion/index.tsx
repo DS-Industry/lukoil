@@ -1,4 +1,4 @@
-import { Box, Text, Table, Tbody, Td, Tr } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 
 export const PromoConditions: React.FC = () => {
     return <Box fontSize='12px'>

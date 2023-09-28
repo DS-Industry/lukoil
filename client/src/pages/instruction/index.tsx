@@ -117,7 +117,7 @@ export const InstructionPage: React.FC = () => {
 				</Box>
 				<Text 
 					w='100%'
-					pb="48px" 
+					pb="62px" 
 					color='colors.PRIMARY_RED' 
 					textAlign='center'
 					onClick={handleInfoClick}
