@@ -19,9 +19,9 @@ export const InstructionPage: React.FC = () => {
 	const [searchParams] = useSearchParams();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-
-	const cardId: string | null = searchParams.get('subid');
 	// take loyalty from query params and do nothing with it.
+	const cardId: string | null = searchParams.get('subid');
+
 	const loyaltyId: string | null = searchParams.get('loyalty');
 	const navigate = useNavigate();
 
@@ -29,8 +29,8 @@ export const InstructionPage: React.FC = () => {
 	const handleClick = async () => {
 		const destination = user && !user.isAuth ? '/login' : '/home';
 		let correctCardId: string | null = null;
-		if (typeof cardId === 'string') {
-			correctCardId = cardId.includes('#') ? cardId.replace('#', '') : cardId;
+		if (typeof loyaltyId === 'string') {
+			correctCardId = loyaltyId.includes('#') ? loyaltyId.replace('#', '') : loyaltyId;
 		}
 
 		if(destination === '/home' && correctCardId && correctCardId !== user.partnerCard){
@@ -52,7 +52,7 @@ export const InstructionPage: React.FC = () => {
 
 	useEffect(() => {
 		getMe();
-		if (!cardId) {
+		if (!loyaltyId) {
 			toast({
 				containerStyle: {
 					marginTop: 'none',

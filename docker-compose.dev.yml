@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  nginx:
+    restart: always
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf.dev:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+  server:
+    build: ./server
+    env_file: ./server/.env.development
