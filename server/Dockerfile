@@ -3,7 +3,7 @@ FROM oraclelinux:7-slim
 WORKDIR /usr/src/app
 
 COPY package.json ./
-COPY yarn.lock /.
+COPY yarn.lock ./
 
 RUN yum update -y && \
     yum install -y oracle-release-el7 && \
