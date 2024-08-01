@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
@@ -26,9 +26,9 @@ const theme = extendTheme({ colors });
 
 root.render(
 	<ChakraProvider theme={theme}>
-		<HashRouter>
+		<BrowserRouter>
 			<App />
-		</HashRouter>
+		</BrowserRouter>
 	</ChakraProvider>
 );
 
