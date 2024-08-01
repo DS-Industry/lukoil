@@ -19,7 +19,7 @@ npm install -g yarn && \
 yarn --version && \
 echo Installed
 
-RUN yarn install
+RUN yarn install  --ignore-engines
 
 COPY . .
 
