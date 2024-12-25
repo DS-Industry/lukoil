@@ -22,22 +22,22 @@ export const PromoConditions: React.FC = () => {
                 <Text fontWeight='bold' as='span'>Акция</Text> – Акция  «Кешбэк 10%»
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>Период проведения Акции:</Text> c 00:00 01 октября 2023 по 23:59 31 декабря 2024 года включительно.
+                <Text fontWeight='bold' as='span'>Период проведения Акции:</Text> c 00:00 01 октября 2023 по 23:59 31 декабря 2025 года включительно.
             </Text>
             <Text>
                 <Text fontWeight='bold' as='span'>Оператор – </Text> ООО «ЛИКАРД» (ОГРН 1123444007070, ИНН 3444197347, адрес: 115035, г. Москва, Вн. Тер. г. Муниципальный округ Замоскворечье, ул. Большая Ордынка, д.3), юридическое лицо, осуществляющее управление и операционную поддержку Программы. 
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>Акционный партнер –</Text>ООО «ГРАСИАН». Организатором Акции является Акционный партнер.
+                <Text fontWeight='bold' as='span'>Акционный партнер – </Text>ООО «ГРАСИАН». Организатором Акции является Акционный партнер.
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>Программа </Text>- Программа лояльности «Заправься выгодой», представляющая собой совокупность взаимоотношений, возникающих в рамках Программы между Участником, Оператором, Партнерами, Акционными партнерами, а также Банком;
+                <Text fontWeight='bold' as='span'>Программа –</Text> Программа лояльности «Заправься выгодой», представляющая собой совокупность взаимоотношений, возникающих в рамках Программы между Участником, Оператором, Партнерами, Акционными партнерами, а также Банком;
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>Участник (Участник Программы) </Text>- физическое лицо, достигшее возраста 18 лет, акцептовавшее Программу (публичную оферту Оператора) путем подписания Согласия; 
+                <Text fontWeight='bold' as='span'>Участник (Участник Программы) –</Text> физическое лицо, достигшее возраста 18 лет, акцептовавшее Программу (публичную оферту Оператора) путем подписания Согласия;
             </Text> 
             <Text>
-                <Text fontWeight='bold' as='span'>Карта - </Text>Пластиковая илиВиртуальная карта, выпускаемая Оператором или Банком, применяемая для идентификации Участника в Программе;
+                <Text fontWeight='bold' as='span'>Карта – </Text>Пластиковая илиВиртуальная карта, выпускаемая Оператором или Банком, применяемая для идентификации Участника в Программе;
             </Text>
             <Text>
                 <Text fontWeight='bold' as='span'>Пластиковая карта </Text>- Карта на материальном носителе, выпускаемая Оператором или Банком;
@@ -64,7 +64,7 @@ export const PromoConditions: React.FC = () => {
                 <Text fontWeight='bold' as='span'>Счет </Text>- виртуальный нефинансовый счет, открываемый Оператором в своей информационной системе для хранения информации о Баллах, предоставленных Участнику;
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>Интернет-представительство </Text>- официальный сайт Программы в информационно- телекоммуникационной сети «Интернет» (далее - интернет) по адресу: auto.lukoil.ru;
+                <Text fontWeight='bold' as='span'>Интернет-представительство </Text>- официальный сайт Программы в информационно-телекоммуникационной сети «Интернет» (далее - интернет) по адресу: auto.lukoil.ru;
             </Text>
 
 
@@ -72,27 +72,27 @@ export const PromoConditions: React.FC = () => {
                 <Text fontWeight='bold' as='span'>Горячая линия </Text>- информационно-консультационная служба для Участников по вопросам, связанным с Программой. Телефонный номер Горячей линии: 8 800 1000 911.
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>1.</Text>Участвовать в Акции может  любой желающий Участник
+                <Text fontWeight='bold' as='span'>1. </Text>Участвовать в Акции может  любой желающий Участник
                 Программы.
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>2.</Text>Для участия в настоящей  Акции Участнику Программы
+                <Text fontWeight='bold' as='span'>2. </Text>Для участия в настоящей  Акции Участнику Программы
                 необходимо:
             </Text>
             <Text>
-                Участник Акции должен зайти в мобильное приложение АЗС ЛУКОЙЛ или на Интернет- представительство Программы, выбрать раздел «Автомойка», найти интересующую мойку на карте, указатьпост в котором он собирается осуществить мойку, выбрать сумму которую Участник планирует потратить или выбрать программу, которой он собирается воспользоваться на робот-мойке (информация о стоимостиминуты и программы по каждой автомойке указана на странице с выбором суммы/программы), оплатить ее с помощью банковской карты, следовать инструкции на терминале. Участник Акции получает вознаграждение в размере 1 Балла за каждые 10 рублей, потраченные на приобретение Товаров Акционного партнера.
+                Участник Акции должен зайти в мобильное приложение АЗС ЛУКОЙЛ или на Интернет - представительство Программы, выбрать раздел «Автомойка», найти интересующую мойку на карте, указать пост в котором он собирается осуществить мойку, выбрать сумму которую Участник планирует потратить или выбрать программу, которой он собирается воспользоваться на робот-мойке (информация о стоимости минуты и программы по каждой автомойке указана на странице с выбором суммы/программы), оплатить ее с помощью банковской карты, следовать инструкции на терминале. Участник Акции получает вознаграждение в размере 1 Балла за каждые 10 рублей, потраченные на приобретение Товаров Акционного партнера.
             </Text>
             <Text>
                 2.1. Баллы предоставляются в следующем порядке:
             </Text>
             <Text>
-                Участник Акции должен зайти в мобильное приложение АЗС ЛУКОЙЛ или на Интернет- представительство Программы, выбрать раздел «Автомойка», найти интересующую мойку на карте, выбрать сумму, которую Участник планирует потратить, оплатить ее с помощью банковской карты, следовать инструкции на терминале. Участник Акции получает вознаграждение в размере 1 Балла за каждые 10 рублей, потраченные на приобретение Товаров Акционного партнера.
+                Участник Акции должен зайти в мобильное приложение АЗС ЛУКОЙЛ или на Интернет - представительство Программы, выбрать раздел «Автомойка», найти интересующую мойку на карте, выбрать сумму, которую Участник планирует потратить, оплатить ее с помощью банковской карты, следовать инструкции на терминале. Участник Акции получает вознаграждение в размере 1 Балла за каждые 10 рублей, потраченные на приобретение Товаров Акционного партнера.
             </Text>
             <Text>
                 2.2. При предоставлении Баллов производится округление стоимости Товара, указанной в одном чеке контрольно-кассовой техники Акционного Партнера, к меньшему целому значению, кратному 10.
             </Text>
             <Text>
-                2.3. Оплата Товара производится Участником Акции путем безналичного расчета в соответствии с законодательством Российской Федерации
+                2.3. Оплата Товара производится Участником Акции путем безналичного расчета в соответствии с законодательством Российской Федерации.
             </Text>
             <Text>
                 <Text fontWeight='bold' as='span'>3.</Text> Запись информации на Счет о предоставленных Участнику Баллах производится Оператором в течение 14 рабочих дней с момента совершения покупки Товара. В случае возникновения вопросов, связанных с правильностью записи о предоставленных Баллах, Участник в течение 30 календарных дней с момента совершения покупки Товара может направить через Личный кабинет в адрес Оператора соответствующую претензию с указанием фамилии, имени, отчества, даты рождения, номера Карты, номера мобильного телефона, адреса электронной почты и вложенной копией чека, подтверждающего покупку Товара.
@@ -113,7 +113,7 @@ export const PromoConditions: React.FC = () => {
                 <Text fontWeight='bold' as='span'>8.</Text> Совершение Участниками Программы действий, направленных на участие в Акции, признается подтверждением того, что Участники Программы ознакомлены и полностью согласны с настоящими Правилами Акции.
             </Text>
             <Text>
-                <Text fontWeight='bold' as='span'>9.</Text> Участник Акции вправе запрашивать информацию об Акции. Запрашиваемая информацияпредоставляется в форме, соответствующей типу обращения Участника Акции (обращение на электроннуюпочту <a href="mailto:hotline@lukoil.com">hotline@lukoil.com,</a> по телефону Единой Горячей Линии 8 800 1000 911).
+                <Text fontWeight='bold' as='span'>9.</Text> Участник Акции вправе запрашивать информацию об Акции. Запрашиваемая информация предоставляется в форме, соответствующей типу обращения Участника Акции (обращение на электронную почту <a href="mailto:hotline@lukoil.com">hotline@lukoil.com,</a> по телефону Единой Горячей Линии 8 800 1000 911).
             </Text>
             <Text>
                 <Text fontWeight='bold' as='span'>10.</Text> Запрещаются действия, ставящие своей целью искусственную накрутку (преднамеренное увеличение, улучшение показателей использования) Карты, в том числе передачи Карты, зарегистрированной на Участника Акции, третьим лицам.
@@ -201,7 +201,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -233,7 +233,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -265,7 +265,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -297,7 +297,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -329,7 +329,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -361,7 +361,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -393,7 +393,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -425,7 +425,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -457,7 +457,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -489,7 +489,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -521,7 +521,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -553,7 +553,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -585,7 +585,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -617,7 +617,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -649,7 +649,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -681,7 +681,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -713,7 +713,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -745,7 +745,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -777,7 +777,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -809,7 +809,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -841,7 +841,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -873,7 +873,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -905,7 +905,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -937,7 +937,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -969,7 +969,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1001,7 +1001,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1033,7 +1033,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1065,7 +1065,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1097,7 +1097,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1129,7 +1129,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1161,7 +1161,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1193,7 +1193,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1225,7 +1225,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1257,7 +1257,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1289,7 +1289,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1321,7 +1321,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1353,7 +1353,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1385,7 +1385,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1417,7 +1417,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1452,7 +1452,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1484,7 +1484,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1516,7 +1516,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1548,7 +1548,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1580,7 +1580,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1612,7 +1612,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1644,7 +1644,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1676,7 +1676,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1708,7 +1708,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1740,7 +1740,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1772,7 +1772,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1804,7 +1804,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1836,7 +1836,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
@@ -1868,7 +1868,7 @@ export const PromoConditions: React.FC = () => {
             </td>
             <td className="promo" width="118" valign="top">
                 <Text>
-                    круглосуточно
+                    Круглосуточно
                 </Text>
             </td>
             <td className="promo" width="97" valign="top">
